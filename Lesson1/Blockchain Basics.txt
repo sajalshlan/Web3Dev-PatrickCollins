@@ -1,0 +1,37 @@
+Blockchain was introduced for BitCoin first
+But in 2014, Vitalik tookt this idea forward and with other cofounders released Ethereum in 2015 - adding the concept of decentralized organizations and decentralized agreements(smart contracts) with its Blockchain.
+
+Originally Nick Zabo came with the idea of smart contracts in 1994.
+
+therefore the main difference between the bitcoin protocol and the ethereum protocol is Smart contracts
+
+basically bitcoin does have smart contracts but they are intentionally turing incomplete - meaning they don't have all the functionality that a programming language would give them
+this is coz bitcoin devs saw bitcoin blockchain as a store of value while ethereum devs saw it as both store of value and a utility for facilitating the decentralized concept
+
+
+The Oracle Problem:
+Blockchain needs real world data inorder to work full-fledgedly but it itself can't interact with the real world 
+
+*Blockchain Oracle - any device that interacts with the off-chain world(real world)  and provides external data and external computations to the smart contracts(blockchain).
+but we can't rely on a single oracle to provide this - can't stay truly decentralized when we only have one oracle, can we?
+
+therefore we should have decentralized oracles bringing external data and external computations to the smart contracts - making sure we are decentralized end to end
+hence mixing both decentralized blockchain with decentralized oracle gives rise to the concept of Hybrid smart contracts.
+
+Hybrid Smart Contracts = OnChain + OffChain Agreements
+
+*dApp - decentralized applications - mainly the combination of many smart contracts
+dapp = decentralized applications = decentralized protocol = smar contract
+
+
+
+WHAT IS THE PURPOSE OF SMART CONTRACTS?
+They create trust minimized agreements giving rise to unbreakable promises - speed, efficiency, immutability and transparency
+
+
+SMART CONTRACT
+An agreement, contract, or set of instructions that is deployed on a decentralized blockchain
+- cannot be altered(immutable)
+- automatically executes
+- everyone sees the terms of the agreement
+
