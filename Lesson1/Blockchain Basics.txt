@@ -87,6 +87,8 @@ that peer will be thrown out - as its whole blockchain will get invalidated - as
 now it explains my doubt of what is a 51% attack?
 basically if 51% of the peer network collectively changes the data, they'll succeed while throwing off the remaining good 49% peers. not possible though to generate enough computational power collectively as changing data and generating a new nonce so that the hash starts with 4 zeroes requires computational power.
 
+The longer the blockchain gets, the harder it begins to tamper with and it becomes more secure
+
 
 
 SIGNING TRANSACTIONS
@@ -105,5 +107,28 @@ Private key > Public Key > Address
 
 
 GAS II: BLOCK REWARDS & EIP 1559
-`
+Base Fee: The minimum *gas price* to send your transaction
 
+EIP 1559 - Ethereum Improvement Proposal
+This one's for the gas fee model
+
+But will EIP 1559 make gas fee lower?
+NO -> rather it will optimize the existing gas fee structure
+- 1. Smoothening gas fee spikes
+  2. Limiting the number of overpaid transactions.
+
+Basically, acc to this proposal => instead of the existing model where the user giving the highest bid of gas fee wins and therefore his/her transaction is included in the block/priortized, where the ones who already gave the older gas fee have to wait a long long time now - the new model says that when the traffic starts increasing in the network, first the block size is increased** - increasing the capacity of gas and number of transactions that can be included -> and subsequently the base gas fee is increased -> therefore after 20 blocks it will increase by 50x, and so on and therefore will remove users from participating, hence decreasing the traffic
+also, earlier the gas fee and the block reward was given to the miner but now the gas fee is burnt, that is making the overall availability of ethereum low, hence benefitting users as the eth they hold are of a greater value now, and the miners get the block reward and miner tip, that a user can decide the amount of -> hence low profit for the miners.
+
+**IF the blocks are less than 50% full -> gas fee decreases
+  IF the blocks are more than 50% full -> gas fee increases
+
+BUT the way to lower the gas fee is eth2.0 and layer2 solutions
+
+*Transaction Fee: (Block BaseFee Per Gas + MaxPriorityFee Per Gas)  *  Gas used
+*Gas Price: Cost of one unit of gas
+*Gas Limit: Maximum amount of units of gas we are willing to pay in this transaction
+
+
+
+HIGH LEVEL BLOCKCHAIN FUNDAMENTALS
