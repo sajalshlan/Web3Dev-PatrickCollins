@@ -1,7 +1,7 @@
 Blockchain was introduced for BitCoin first
-But in 2014, Vitalik tookt this idea forward and with other cofounders released Ethereum in 2015 - adding the concept of decentralized organizations and decentralized agreements(smart contracts) with its Blockchain.
+But in 2014, Vitalik took this idea forward and with other cofounders released Ethereum in 2015 - adding the concept of decentralized organizations and decentralized agreements(smart contracts) with its Blockchain.
 
-Originally Nick Zabo came with the idea of smart contracts in 1994.
+Originally Nick Szabo came with the idea of smart contracts in 1994.
 
 therefore the main difference between the bitcoin protocol and the ethereum protocol is Smart contracts
 
@@ -16,9 +16,11 @@ Blockchain needs real world data inorder to work full-fledgedly but it itself ca
 but we can't rely on a single oracle to provide this - can't stay truly decentralized when we only have one oracle, can we?
 
 therefore we should have decentralized oracles bringing external data and external computations to the smart contracts - making sure we are decentralized end to end
-hence mixing both decentralized blockchain with decentralized oracle gives rise to the concept of Hybrid smart contracts.
+hence mixing both decentralized blockchain with decentralized oracle network gives rise to the concept of Hybrid smart contracts.
 
 Hybrid Smart Contracts = OnChain + OffChain Agreements
+(onchain code + offchain systems[triggering the onchain system, take actions on behalf of the contract, return proof that the action was taken])
+[check this - https://blog.chain.link/hybrid-smart-contracts-explained/]
 
 *dApp - decentralized applications - mainly the combination of many smart contracts
 dapp = decentralized applications = decentralized protocol = smar contract
@@ -34,4 +36,25 @@ An agreement, contract, or set of instructions that is deployed on a decentraliz
 - cannot be altered(immutable)
 - automatically executes
 - everyone sees the terms of the agreement
+
+
+EtherScan
+A Block explorer - a way to view different address, transactions and other happenings that happen with a blockchain
+
+
+Introduction to Gas
+When we make transactions, the miners or validators make a small fee
+the fee depends on how much of gas you use
+
+Gas: a unit of computational measurement
+the more complex your transaction is, the more gas you have to pay.
+Transaction price = Gas Price x Gas usage
+
+Depending on how busy the blockchain is, how much traffic the network has - you have to pay more gas fee
+more people sending transactions at the same time means more gas costs
+
+ 
+
+HOW DO BLOCKCHAIN WORKS
+
 
