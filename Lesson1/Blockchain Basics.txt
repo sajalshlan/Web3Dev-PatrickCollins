@@ -9,6 +9,7 @@ basically bitcoin does have smart contracts but they are intentionally turing in
 this is coz bitcoin devs saw bitcoin blockchain as a store of value while ethereum devs saw it as both store of value and a utility for facilitating the decentralized concept
 
 
+
 The Oracle Problem:
 Blockchain needs real world data inorder to work full-fledgedly but it itself can't interact with the real world 
 
@@ -31,6 +32,7 @@ WHAT IS THE PURPOSE OF SMART CONTRACTS?
 They create trust minimized agreements giving rise to unbreakable promises - speed, efficiency, immutability and transparency
 
 
+
 SMART CONTRACT
 An agreement, contract, or set of instructions that is deployed on a decentralized blockchain
 - cannot be altered(immutable)
@@ -38,8 +40,10 @@ An agreement, contract, or set of instructions that is deployed on a decentraliz
 - everyone sees the terms of the agreement
 
 
+
 EtherScan
 A Block explorer - a way to view different address, transactions and other happenings that happen with a blockchain
+
 
 
 Introduction to Gas
@@ -56,5 +60,50 @@ more people sending transactions at the same time means more gas costs
  
 
 HOW DO BLOCKCHAIN WORKS
+The Genesis block - first block in the blockchain
 
+Hash: Unique fixed length string to identify a piece of data
+
+Hash Algorithm: A algorithm/function that computes the data into a unique hash
+
+Mining: The process of finding the "solution" to the blockchain "problem".
+        here, problem was to find a hash that starts with four zeroes
+        [problems can be different depinding on blockchain to blockchain]
+
+        Nodes get paid for mining blocks
+
+Block: A list of transactions mined together
+
+Decentralized: having no single point of authority
+
+Nonce: A "number used once" to find the "solution" to the blockchain    problem.
+       Also used to define the number of transactions for an account/address (in ethereum).
+
+the last block's hash of each peer is compared and verified and if any of the peers had done something malicious/changed some data - then the hash of that block will change -> changing the hashes of all the block ahead of it, therefore last block's hash won't match other peers last block's hash.
+
+that peer will be thrown out - as its whole blockchain will get invalidated - as changing data -> now we have to compute/mine a new nonce that will along with data and block number give us a new hash starting with 0000 - now same process with all the blocks following/ahead of that block - already enough computatinal power needed 
+
+
+now it explains my doubt of what is a 51% attack?
+basically if 51% of the peer network collectively changes the data, they'll succeed while throwing off the remaining good 49% peers. not possible though to generate enough computational power collectively as changing data and generating a new nonce so that the hash starts with 4 zeroes requires computational power.
+
+
+
+SIGNING TRANSACTIONS
+Private Key: Only known to the key holder, it's used to "sign" transactions
+
+Public Key: Anyone can see it, and it is used to verify that a transaction came from you - is derived from private key
+
+Signing a transaction: A "one way process" (meaning you can't obtain private key again) - a private key hashed with transaction data is used as a "message signature" - then anyone can verify this transaction hash (message signature) using our public key. 
+
+Private key is used to generate the public key using the Elliptical Curve Digital Signature Algorithm, a variant of the Digital Signature Algorithm(DSA - which uses elliptic curve cryptography) - both Bitcoin and Ethereum uses this algorithm
+
+Your address in Ethereum is derived when your public key is hashed with Keccak256 hashing algorithm and taking the last 20bits
+
+Private key > Public Key > Address
+
+
+
+GAS II: BLOCK REWARDS & EIP 1559
+`
 
