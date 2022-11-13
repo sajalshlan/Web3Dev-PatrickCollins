@@ -1,7 +1,8 @@
-Blockchain was introduced for BitCoin first
+Blockchain was introduced for Bitcoin first
 But in 2014, Vitalik took this idea forward and with other cofounders released Ethereum in 2015 - adding the concept of decentralized organizations and decentralized agreements(smart contracts) with its Blockchain.
 
 Originally Nick Szabo came with the idea of smart contracts in 1994.
+[Do read about him]
 
 therefore the main difference between the bitcoin protocol and the ethereum protocol is Smart contracts
 
@@ -68,7 +69,7 @@ Hash Algorithm: A algorithm/function that computes the data into a unique hash
 
 Mining: The process of finding the "solution" to the blockchain "problem".
         here, problem was to find a hash that starts with four zeroes
-        [problems can be different depinding on blockchain to blockchain]
+        [problems can be different depending on blockchain to blockchain]
 
         Nodes get paid for mining blocks
 
@@ -76,7 +77,7 @@ Block: A list of transactions mined together
 
 Decentralized: having no single point of authority
 
-Nonce: A "number used once" to find the "solution" to the blockchain    problem.
+Nonce: A "number used once" to find the "solution" to the blockchain problem.
        Also used to define the number of transactions for an account/address (in ethereum).
 
 the last block's hash of each peer is compared and verified and if any of the peers had done something malicious/changed some data - then the hash of that block will change -> changing the hashes of all the block ahead of it, therefore last block's hash won't match other peers last block's hash.
