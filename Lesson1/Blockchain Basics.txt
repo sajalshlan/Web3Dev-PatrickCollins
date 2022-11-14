@@ -133,3 +133,61 @@ BUT the way to lower the gas fee is eth2.0 and layer2 solutions
 
 
 HIGH LEVEL BLOCKCHAIN FUNDAMENTALS
+Node means one of the server out of all those servers on which the blockchain is running
+Anyone can join these networks and participate
+
+*Consensus - mechanism used to agree on the state of a blockchain
+Consensus protocol can be broken down roughly into 2 parts:
+1. Chain Selection  ALgo - the chain with highest number of blocks or the longest blockchain will be used.
+2. Sybil Resistance - roughly a way of defending against somebody making a bunch of fake blockchains for the rewards - includes POW and POS
+
+Consensus is often confused with POW, but Consensus consists of both the things mentioned above, and currently Bitcoin uses Nakamoto Consensus which involves longest chain selection and POW.
+
+Who's getting paid?
+In POW - miners
+In POS - validators
+
+2 types of Attacks in POW:
+1. Sybil Attack- when a single person or a single node tries to affect the decenrality of the network by pretending to be multiple different people - which is very difficult in POW and POS
+2. 51% attack - basically if 51% of the nodes team up and influence the chain in their direction - can't because of the longest chain selection mechanism 
+
+*POW and POS are Sybil Resistance mechanisms.
+
+Drawback of POW - uses a lot of energy 
+
+POS - nodes put up collateral as a sybil Resistance mechanism
+    - Miners are called validators - as they're not longer mining anything, rather just validating other nodes.
+    - unlike pow, where miners used to race to validate the block - here validators are chosen at random to propose the new block and other validtors verify
+    - uses much less energy -> as instead of every node on the network trying to mine it, only one node at random is chosen and rest need to validate 
+
+Randomness is actually a very imp topic when we are talking about these deterministic systems called as blockchains
+
+Drawbacks of POS - considered as slightly less decentralized because of the upfront costs it cost to participate 
+
+*Scalability
+Blockchain is not so scalable rn as when the transactions increase, coz of the block size the gas price skyrockets which is preventing from more traffic/more users to get into the Blockchain.
+Sharding and Rollups are 2 scalablility solutions
+Ethereum's solution to the scalablility problem is Sharding.
+
+Sharding: A sharded blockchain means there is going to be blockchain of blockchains
+         - a main chain that is going to coordinate everything amongst several chains that hook into this main chain
+         - more blockchains > more blocks > more transactions can be included
+
+
+ Sharding can greatly increase the number of transactions on layer 1
+
+ *Layers
+ Layer1 - Base Layer Blockchain solutions 
+        - ex: Bitcoin, Ethereum, Avalanche
+
+Layer2 - any application build on top of layer1
+       - ex: Chainlink, Arbitrage, Optimism
+
+Arbitrage & Optimism are Rollups built on top of Ethereum
+
+Rollups - A sharded blockchain built on top of a layer1 blockchain
+        - they derive their security from base layer(i.e layer1 - ethereum here)
+        - bulk send their transactions onto the layer1
+        - solving scalablility issues by being a blockchain people can make transaction on, still on this base Ethereum layer
+
+Rollups are different from Sidechains as Sidechains derive their security from their own protocols, while rollups derive their security from the base layers      
