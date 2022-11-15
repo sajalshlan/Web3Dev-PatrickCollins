@@ -1,0 +1,53 @@
+
+BASIC SOLIDITY FUNCTIONS
+Smart contracts have addresses just like our wallet accounts do
+
+Anytime we do anything on blockchain - modifying any values  - be it deploying smart contracts, or  - we are basically sending a transaction.
+so it gets recorded as a transaction
+
+deploying a contract is modifying the blockchain to have this contract - modifying the state of the blockchain
+
+Tu kuch bhi kar blockchain ke saath - sab transactions hai.
+
+*The 4 function visibility specifiers - public, private, external and internal
+The default visibility of functions and variables is internal
+
+Out of which - Public means visible internally and externally -> creates a getter function for storage/state variables
+
+Parameters of a functions having a naming convention starting with underscore (_) - differentiating them with global variables whose names will be normal 
+
+*View and Pure functions, when called alone don't spend gas.
+View function - means we are just going to read something from this contract or this function, and can't modify anything.
+Pure function - means you can't even read! ex: maybe you need to access an algorithm again and again that is self-sufficient, doesn't need to read from blockchain or maybe a computation you want to run over and over again.
+
+Calling view function (and pure function) is free until you're calling those functions inside of a funtion which costs gas.
+
+
+
+BASIC SOLIDITY ARRAYS & STRUCTS
+nothing additional than what I already know
+
+
+
+BASIC SOLIDITY MEMORY, STORAGE AND CALLDATA
+EVM can store and access information in 6 places:
+1.Stack
+2.Code
+3 Logs
+4.Calldata 
+5.Memory
+6.Storage
+
+Solidity needs us to give a data location to function pararmeters.
+
+*Calldata - temporary variables that can't be modified - will only exist for the duration of the function
+*Memory - temporary variables that can be modified - will only exist for the duration of the function
+*Storage - permanent variables that can be modified - will stay forever
+
+Data location can only be specified for array, struct or mapping types.
+
+
+
+BASIC SOLIDITY MAPPING
+A mapping is a data structure in which a key is mapped to a single value.
+sort of like a dictionary    
