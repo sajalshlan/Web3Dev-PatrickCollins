@@ -1,0 +1,64 @@
+
+IMORTING CONTRACTS INTO OTHER CONTRACTS
+We can have a contract actually deploy contracts for us and we can interact with those contracts from other contracts.
+
+The ability of contracts in interacting with other contracts is very important and is known as Composability.
+Smart Contracts are composable because they can easily interact with each other
+
+Basic import other contracts with the "import" keyword - now you can make a object/instance of this contract and call it from here:
+
+    import "./SimpleStorage.sol" ;
+
+        contract StorageFactory {
+            SimpleStorage public simpleStorage;
+
+            function createSimpleStorageContract() public {
+                simpleStorage = new SimpleStorage();
+}
+
+
+
+INTERACTING WITH OTHER CONTRACTS
+basically try to understand this code:
+
+//SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9; 
+
+import "./SimpleStorage.sol" ;
+
+contract StorageFactory {
+    SimpleStorage[] public simpleStorageArray;
+
+    function createSimpleStorageContract() public {
+        SimpleStorage simpleStorage = new SimpleStorage();
+        simpleStorageArray.push(simpleStorage);
+    }
+
+    function sfStore(uint _simpleStorageIndex, uint _simpleStorageFavoriteNumber) public {
+        SimpleStorage simpleStorage = simpleStorageArray[_simpleStorageIndex];
+        simpleStorage.store(_simpleStorageFavoriteNumber);
+    }
+
+    function sfGet(uint _simpleStorageIndex) public view returns(uint) {
+        SimpleStorage simpleStorage = simpleStorageArray[_simpleStorageIndex];
+        return simpleStorage.retrieve();
+        
+    }
+}
+
+
+
+INHERITANCE AND OVERRIDES
+*Inheritance -> Our child contract will have all the functionalities of the parent contract, 2 words needed:
+
+1. import "./SimpleStorage.sol"
+2. contract MyChildContract is SimpleStorage {
+
+}
+
+*Overrides -> name says - to override any function of the parent contract, 2 words - virtual and override
+1. virtual -> need to add this keyword to the original function in  the parent contract which the child would be able to override.
+2. override -> this keyword to the new function with same name in the child contract which is overriding that function from the parent container.
+
+
+
