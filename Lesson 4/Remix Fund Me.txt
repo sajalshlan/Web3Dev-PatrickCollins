@@ -1,0 +1,64 @@
+ITS GOING TO BE FUN!
+
+aim:
+1. get funds from user
+2. withdraw funds
+3. set a minimum funding amount acc to USD
+
+SENDING ETH THROUGH A FUNCTION AND REVERTS
+*Payable keyword:
+Smart contracts can hold funds just as wallets can because smart contracts are alloted address same as a wallet - so both wallets and contracts can hold native tokens like etherum
+
+*msg.value keyword:
+a global variable to get how much value somebody is sending
+
+Money math is done in terms of wei - so 1 eth needs to be set as 1e18 value -> 1e18 = 1* 10 ** 18.
+
+*require keyword:
+if you want something to happen and the whole smart contract should fail if that doesn't happen - use require
+syntax -> require(condition, revert statement)
+reverting means undo any action before, and send remaining gas back
+- means if there are computations after the require function, only that gas will be spent that is involved above the require function, although all the computations will be undo/reversed back and the extra gas we had for further computations will be returned back to you.
+
+
+
+CHAINLINK & ORACLES
+We've already read about Oracle network from Chainlink
+Better read this - [https://github.com/smartcontractkit/full-blockchain-solidity-course-js#chainlink--oracles]
+
+Chainlink features - plugins that can be used in our smart contract
+
+*Chainlink Data Feeds:
+Supports the growth of DEFI Ecosystem
+Exchanges > Data Providers > Chainlink Nodes > Reference Contract > User Contract
+
+whenever a oracle node delivers data, it is paid a oracle fee (just like the transaction fee) in chainlink token
+
+*Chainlink VRF(Verifyable randomness function):
+Securing randomness
+blockchain are deterministic systems, that is they can't have randomness.
+chainlink vrf can help us get a provably random number - to guarantee randomness and fairness in our applications
+
+Artists(creates unique digital artworks) > EtherCards Framework(provides tools for NFT creation) > Chainlink VRF(each minted nft uses vrf to assign provably rare traits) > NFTs with randomized traits(rarity secured by chainlink)
+
+*Chainlink Keepers:
+Decentralized Event-Driven Execution
+
+Keepers are the chainlink nodes that listen to the registration contract for different events specify to fire
+chainlink nodes constantly listen to these trigers to happen and checks different contracts for these triggers - once these triggers return true, chainlink nodes will perform whatever action that you've coded.
+
+
+ 
+REVIEW OF SENDING ETH & WORKING WITH CHAINLINK
+recap tha
+
+
+
+INTERFACES & PRICE FEEDS
+To interact with a contract outside of our contract, we need 2 things - 
+1. ABI of the contract
+2. Address of the contract
+
+
+
+
