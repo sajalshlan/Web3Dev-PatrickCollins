@@ -56,8 +56,10 @@ recap tha
 
 INTERFACES & PRICE FEEDS
 To interact with a contract outside of our contract, we need 2 things - 
-1. ABI of the contract
+1. ABI of the contract - basically a list of the functions by which you interact with a contract - the list of different functions and interactions that you can call > will use the concept of interface to include ABI
 2. Address of the contract
+
+
 
 
 
