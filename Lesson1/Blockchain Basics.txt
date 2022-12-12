@@ -27,7 +27,7 @@ Hybrid Smart Contracts = OnChain + OffChain Agreements
 *dApp - decentralized applications - mainly the combination of many smart contracts
 dapp = decentralized applications = decentralized protocol = smar contract
 
-
+////
 
 WHAT IS THE PURPOSE OF SMART CONTRACTS?
 They create trust minimized agreements giving rise to unbreakable promises - speed, efficiency, immutability and transparency
