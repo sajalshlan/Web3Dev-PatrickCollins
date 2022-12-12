@@ -14,7 +14,7 @@ this is coz bitcoin devs saw bitcoin blockchain as a store of value while ethere
 The Oracle Problem:
 Blockchain needs real world data inorder to work full-fledgedly but it itself can't interact with the real world 
 
-*Blockchain Oracle - any device that interacts with the off-chain world(real world)  and provides external data and external computations to the smart contracts(blockchain).
+*Blockchain Oracle - any device that interacts with the off-chain world(real world) and provides external data and external computations to the smart contracts(blockchain).
 but we can't rely on a single oracle to provide this - can't stay truly decentralized when we only have one oracle, can we?
 
 therefore we should have decentralized oracles bringing external data and external computations to the smart contracts - making sure we are decentralized end to end
@@ -25,7 +25,7 @@ Hybrid Smart Contracts = OnChain + OffChain Agreements
 [check this - https://blog.chain.link/hybrid-smart-contracts-explained/]
 
 *dApp - decentralized applications - mainly the combination of many smart contracts
-dapp = decentralized applications = decentralized protocol = smar contract
+dapp = decentralized applications = decentralized protocol = smart contract
 
 
 
