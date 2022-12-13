@@ -58,12 +58,138 @@ recap tha
 
 
 INTERFACES & PRICE FEEDS
-To interact with a contract outside of our contract, we need 2 things - 
-1. ABI of the contract - basically a list of the functions by which you interact with a contract - the list of different functions and interactions that you can call > will use the concept of interface to include ABI
+To interact with a contract outside of our contract, we need 2 things -
+
+1. ABI of the contract - basically a list of the functions by which you interact with a contract- only the name,type of the functions and doesn't include the logic of the function - the list of different functions and interactions that you can call > we use the concept of interface to get the ABI.
+
+these interfaces when compiled gives us ABI - as needed, to use in our smart contract without going into the logic of the functions that we'll be using - those logic being written safely and securely and no one can override them.
+
+thus makes interfaces a really easy way to interact with contracts outside our contract
+
+when we add the contract's address with our interfaces, we can use all functions present on that interface in our contract based on the contract's address we have taken as a parameter inside the interface function.
+
 2. Address of the contract
 
 
 
+IMPORTING FROM GITHUB AND NPM
+Instead of copying and pasting all these interfaces at the top of our code - making it bigger and uglier - we can instead use our fav keyword = import "".
 
- 
+but remember, to use import, we should have that interface that needs to be imported in our files, then iska matlab we again need to create a new interface.sol file and then import it
+
+INStead - we will use github links to import directly from github - our traditional npm packages.
+- import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+
+
+
+FLOATING POINT MATH IN SOLIDITY
+understandable with code:
+    //SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
+
+contract FundMe {
+
+    uint public minimumUsd = 50 * 1e18;
+
+     function fund() public payable{
+         //want to be able to set a fixed min amount in eth
+         require(getConversionRate(msg.value) >= minimumUsd, "Didn't send enough");
+     }
+
+     function getPrice() public view returns (uint256) {
+         //abi
+         //address 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419
+
+         AggregatorV3Interface priceFeed = AggregatorV3Interface(0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419);
+         (, int256 price,,,) = priceFeed.latestRoundData();
+
+         //now got eth without decimal points and only with 8 zeroes, but need 18 acc to msg.value
+         return uint256(price * 1e10);
+     }
+
+     function getConversionRate(uint ethAmount) public view returns(uint) {
+         uint ethPrice = getPrice();
+         uint ethAmountInUsd = (ethAmount * ethPrice)/1e18;
+         return ethAmountInUsd;
+     }
+
+
+
+BASIC SOLIDITY ARRAYS AND STRUCTS II
+understandable with code:
+
+    contract FundMe {
+
+    uint public minimumUsd = 50 * 1e18;
+    address[] public funders;
+    mapping(address => uint256) public addressToAmountFunded;
+
+     function fund() public payable{
+         //want to be able to set a fixed min amount in eth
+
+         require(getConversionRate(msg.value) >= minimumUsd, "Didn't send enough");
+
+         funders.push[msg.sender];
+         addressToAmountFunded[msg.sender] = msg.value;
+
+     }
+
+
+
+LIBRARIES
+libraries can't have any state variables and they also can't send any ether and all the functions are going to be internal
+
+Aim is to minimize code and make it look clean so - what if we could use msg.value.getConversionRate() -> i.e, directly attaching a method/function to a uint variable as if it's a struct/array.
+
+we can do that with the help of library
+
+    make a library first, ex- PriceConverter.sol
+    now in FundMe.sol, import this library - 
+        import "./PriceConverter.sol"
+
+    now inside the FundMe contract - 
+        contract FundMe {
+           using PriceConverter for uint256;
+        }
+
+that's it, now we can do what we wanted to, i.e, msg.value.getConversionRate();
+BUT if you noticed, the original function getConversionRate() which we shifted to our library PriceConverter.sol, had a parameter to take as input (ethAmount), but when using msg.value.getConversionRate(), we don't take in the input ---> actually the msg.value is consider to be the first parameter.
+
+IF we want to add a second parameter to the function getConversionRate() in our library, we will add it like this:
+
+    IN LIBRARY:
+        function getConversionRate(uint ethAmount, uint somethingElse)
+
+    IN OUR CONTRACT
+        msg.value.getConversionRate(123);
+
+here --> msg.value = ethAmount and 123 = somethingElse.
+
+
+
+UNCHECKED KEYWORD
+used to be there by default before solidity version 0.76, but now it is fixed and same as adding a unchecked keyword before the code.
+
+basically what it does it, when I take a variable uint8, it could store a max number 255, but if I make a function that would add 1 to the variable - i.e, overflow will happen and the value of the variable will become 0 - a not needed feature usually -> solidity ^0.8 fixed that.
+
+
+
+BASIC SOLIDITY FOR LOOP, RESETTING AN ARRAYS
+already known
+Resetting - funders = new address[](0);
+
+
+
+SENDING ETH TO CONTRACT
+3 ways : transfer, send, call
+watch again, 4.42.00
+
+
+
+BASIC SOLIDITY CONSTRUCTORS & MODIFIERS
+
+
+
 
