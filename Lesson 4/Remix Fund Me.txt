@@ -7,7 +7,7 @@ aim:
 
 SENDING ETH THROUGH A FUNCTION AND REVERTS
 *Payable keyword:
-Smart contracts can hold funds just as wallets can because smart contracts are alloted address same as a wallet - so both wallets and contracts can hold native tokens like etherum
+Smart contracts can hold funds just as wallets can - because smart contracts are alloted address same as a wallet - so both wallets and contracts can hold native tokens like ethereum 
 
 *msg.value keyword:
 a global variable to get how much value somebody is sending
@@ -23,6 +23,7 @@ reverting means undo any action before, and send remaining gas back
 
 
 CHAINLINK & ORACLES
+Oracle - any device that interacts with offchain world to provide external data or computations to smart contracts.
 We've already read about Oracle network from Chainlink
 Better read this - [https://github.com/smartcontractkit/full-blockchain-solidity-course-js#chainlink--oracles]
 
@@ -32,12 +33,14 @@ Chainlink features - plugins that can be used in our smart contract
 Supports the growth of DEFI Ecosystem
 Exchanges > Data Providers > Chainlink Nodes > Reference Contract > User Contract
 
-whenever a oracle node delivers data, it is paid a oracle fee (just like the transaction fee) in chainlink token
+whenever we request data from these oracle nodes - a oracle node delivers data, we have to pay a oracle fee (just like the transaction fee) in chainlink token
+all these nodes deliver data to a single node, which further delivers the data with signatures of the nodes to a "reference" smart contract that is present on chain, via which other smart contracts on the blockchain takes in the data feed.
 
 *Chainlink VRF(Verifyable randomness function):
 Securing randomness
 blockchain are deterministic systems, that is they can't have randomness.
 chainlink vrf can help us get a provably random number - to guarantee randomness and fairness in our applications
+many protocols like - pool together, axie infinity, EtherCards, aavegotchis, etc used chainlink VRF for lotteries, randomizing NFTs, for gaming and more.
 
 Artists(creates unique digital artworks) > EtherCards Framework(provides tools for NFT creation) > Chainlink VRF(each minted nft uses vrf to assign provably rare traits) > NFTs with randomized traits(rarity secured by chainlink)
 
@@ -62,5 +65,5 @@ To interact with a contract outside of our contract, we need 2 things -
 
 
 
-
+ 
 

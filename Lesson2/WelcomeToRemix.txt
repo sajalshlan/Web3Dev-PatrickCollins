@@ -2,7 +2,7 @@
 BASIC SOLIDITY FUNCTIONS
 Smart contracts have addresses just like our wallet accounts do
 
-Anytime we do anything on blockchain - modifying any values  - be it deploying smart contracts, or  - we are basically sending a transaction.
+Anytime we do anything on blockchain - modifying any values  - be it deploying smart contracts, or - we are basically sending a transaction.
 so it gets recorded as a transaction
 
 deploying a contract is modifying the blockchain to have this contract - modifying the state of the blockchain

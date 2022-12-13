@@ -57,7 +57,7 @@ INHERITANCE AND OVERRIDES
 }
 
 *Overrides -> name says - to override any function of the parent contract, 2 words - virtual and override
-1. virtual -> need to add this keyword to the original function in  the parent contract which the child would be able to override.
+1. virtual -> need to add this keyword to the original function in the parent contract which the child would be able to override.
 2. override -> this keyword to the new function with same name in the child contract which is overriding that function from the parent container.
 
 
