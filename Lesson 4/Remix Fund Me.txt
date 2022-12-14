@@ -191,6 +191,12 @@ watch again, 4.42.00
 BASIC SOLIDITY CONSTRUCTORS & MODIFIERS
 Whosoever deploys this contract at first should be set as owner of this contract, so that only the owner can call the withdraw function to withdraw the funds, to do that we will use constructors 
 Constructor is a function that gets called immediately when a contract is deployed.
+    address public owner;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
 
 Modifiers/ 
 a modifier is a keyword that we can add right in any function declaration, ex-
@@ -205,4 +211,67 @@ underscore represents doing the rest of the code.
 
 ADVANCED SOLIDITY CONCEPTS
 
+~ CONSTANT Keyword - use constant keyword if you're sure that your variable is going to hold a constant value - can only be declared one time.
+convention - name of the constant variable is written using capital letters and underscore. ex- uint256 public constant MINIMUM_USD = 50 * 1*e18;
 
+used for gas optimization - gas savings are pretty good, about a $1 is saved just by using this constant keyword.
+
+
+~ IMMUTABLE keyword - variables that we set one time but outside of the same line where they are declared - can be declared one more time.
+convention - 'i_' as prefix.
+
+very similar gas savings
+
+Both of these saved gas as instead of storing these variables in memory slot, we stored them directly into the bytecode of the contract.
+
+
+~ Custom Errors
+pretty new in solidity - ^0.8.4;
+with using require statement, we store the whole string that reverts back if require statement is not satisfied - but we have an alternative method to save gas:
+Using if and revert statement and create custom error.
+
+    at the top:
+        error NotOwner();
+
+    now in the modifier onlyOwner, removing require and using:
+        if(msg.sender!=i_owner){
+            revert NotOwner();
+        }
+
+It's so fun ngl
+
+~ Receive and Fallback
+what happens if someone sends this contract eth without callin the fund function, using receive and fallback, we can route the transactions (incoming eth or data) to our fund function.
+
+//Receive 
+A contract can have at most one receive function, declared using receive() external payable { ... } (without the function keyword). This function cannot have arguments, cannot return anything and must have external visibility and payable state mutability. It can be virtual, can override and can have modifiers.
+
+    // SPDX-License-Identifier: MIT
+    pragma solidity ^0.8.7;
+
+    contract FallbackExample {
+        uint256 public result;
+
+        // Fallback function must be declared as external.
+            fallback() external payable {
+            result = 1;
+        }
+
+        receive() external payable {
+            result = 2;
+        }
+}
+
+    // Explainer from: https://solidity-by-example.org/fallback/
+    // Ether is sent to contract
+    //      is msg.data empty? (whether sending by calldata or by metamask directly)
+    //          /   \ 
+    //         yes  no
+    //         /     \
+    //    receive()?  fallback() 
+    //     /   \ 
+    //   yes   no
+    //  /        \
+    //receive()  fallback()
+
+    DONE YEAHHH
