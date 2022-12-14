@@ -217,7 +217,7 @@ convention - name of the constant variable is written using capital letters and 
 used for gas optimization - gas savings are pretty good, about a $1 is saved just by using this constant keyword.
 
 
-~ IMMUTABLE keyword - variables that we set one time but outside of the same line where they are declared - can be declared one more time.
+~ IMMUTABLE keyword - variables that we set one time but outside of the same line where they are declared - can be declared one more time but only inside the constructor.
 convention - 'i_' as prefix.
 
 very similar gas savings
