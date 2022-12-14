@@ -1,0 +1,18 @@
+It's going to be fun!
+
+DEBUGGING
+This is going to be the piece that is going to give you the superpower to unblock yourself from any coding issue I run into!
+
+Tinker and figure out yourself - keep hitting and trying
+Limit tinkering to 20 minutes -> take at least 15 min yourself -> exhaust yourself completely trying all the options
+
+1. Tinker and try to pinpoint exactly what's going on
+2. Google the exact error - be patient, explore all answers patiently
+3. Ask a question on a forum like Stack Exchange ETH and Stack Overflow
+
+Five steps from the original yt video of Patrick about Debugging:
+
+1. Tinker and Experiment - Pinpoint exactly what's going wrong here
+2. Check the docs
+3. Google!
+
