@@ -189,7 +189,20 @@ watch again, 4.42.00
 
 
 BASIC SOLIDITY CONSTRUCTORS & MODIFIERS
+Whosoever deploys this contract at first should be set as owner of this contract, so that only the owner can call the withdraw function to withdraw the funds, to do that we will use constructors 
+Constructor is a function that gets called immediately when a contract is deployed.
+
+Modifiers/ 
+a modifier is a keyword that we can add right in any function declaration, ex-
+    modifier onlyOwner{
+        require(msg.sender == owner, "sender is not owner!");
+        _;
+    }
+
+underscore represents doing the rest of the code.
 
 
+
+ADVANCED SOLIDITY CONCEPTS
 
 
