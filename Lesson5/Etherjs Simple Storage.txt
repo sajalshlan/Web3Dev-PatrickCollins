@@ -15,4 +15,15 @@ Five steps from the original yt video of Patrick about Debugging:
 1. Tinker and Experiment - Pinpoint exactly what's going wrong here
 2. Check the docs
 3. Google!
+4. Ask questions on Forums
+5. Join & Strengthen the community and tool
 
+
+
+INSTALLATION & SETUP
+Hardhat - a smart contract developer framework similar to brownie or foundry.
+then why Hardhat? - coz it's JS based development environment
+
+first we will learn Ethers.js - a js based library for working with smart contracts
+
+gitpod - a cloud development environment - run your code on a remote server, similar to remix IDE but allows you to run VS Code in the browser or connected to another server.
