@@ -43,3 +43,32 @@ used to compile your code/
 
 
 GANACHE & NETWORKS
+Similar to a virtual machine in remix - ganache is one of that application.
+
+Ganache - Quickly fire up a personal Ethereum blockchain which you can use to run tests, execute commands, and inspect state while controlling how the chain operates.
+
+RPC - remote procedure call is the imp thing here - stands for a connection to a blockchain node that somebody is running - this rpc url helps us make API calls to and interact with a blockchain node
+
+
+
+INTRO TO ETHERS.JS
+same as web3js but we be using ethers is coz it powers the Hardhat environment, which we'll be using
+
+1. install ethers - yarn add ethers
+
+2. import ethers to your file -> const ethers = require("ethers")
+now ethers gives us many features and functions - out of which rappers are used to make those api calls - create our provider object in our main function - instead of us dealing with all those fetch and axios requests
+
+3. Now make a provider function and use the RPC of ganache
+  -> this is the way our script is going to connect to our blockchain
+
+4. now get our wallet's private key - to sign deploying this contract
+
+5. now in order to deploy our contract to the blockchain, we need ABI and the binary compiled code of the contract
+ -> we'll be using 'fs' and locate those two files
+
+6. now we need to create a contract factory - just a ethers object you can use to deploy contracts
+
+ TOH BASICALLY - to deploy a contract:
+ 1. we need the blockchain's RPC url and our wallet's private key
+ 2. we need the ABI and binary code of our contract to be deployed
