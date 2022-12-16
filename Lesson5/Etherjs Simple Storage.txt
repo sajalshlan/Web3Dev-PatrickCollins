@@ -27,3 +27,19 @@ then why Hardhat? - coz it's JS based development environment
 first we will learn Ethers.js - a js based library for working with smart contracts
 
 gitpod - a cloud development environment - run your code on a remote server, similar to remix IDE but allows you to run VS Code in the browser or connected to another server.
+
+
+
+COMPILING OUR SOLIDITY CODE
+we need to install a solidity compiles - npm install solc
+or yarn add solc
+
+then add a script: {
+    "compile": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"
+}
+
+used to compile your code/
+
+
+
+GANACHE & NETWORKS
