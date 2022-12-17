@@ -2,7 +2,27 @@
 
 INTRO
 Hardhat - a flexible JS based development environment to compile, deploy, test and debug EVM based smart contracts - makes things way easier!
+Hardhat also comes built-in with Hardhat Network, a local Ethereum network designed for development. It allows you to deploy your contracts, run your tests and debug your code.
 
 
 
 HARDHAT SETUP
+yarn init (same as npm init)
+yarn add --dev hardhat 
+yarn hardhat (same as npx hardhat)
+
+there are 2 types of files in node modules - one starting with '@' and others dont -> difference is that the ones starting with @ are the node modules by the offical teams.
+
+all our compilation info is going to be stored in a folder named "artifacts".
+
+
+HARDHAT SETUP TROUBLESHOOTING
+1. sometimes when writing this in cli - yarn hardhat or npx hardhat -> we get a menu of options, that is good but sometimes we don't (error) coz we already have a hardhat config file somewhere else (maybe at a higher level) -> so in order to solve this, find and delete that config file. and for finding that, use -
+npx hardhat --verbose
+and then delete it 
+
+2. when cloning a github repo, - for collaborating on already exisitng project, don't forget to npm install (or yarn) - to get all those needed node modules and dependencies in your local machine/repo 
+
+
+
+DEPLOYING SIMPLESTORAGE FROM HARDHAT
