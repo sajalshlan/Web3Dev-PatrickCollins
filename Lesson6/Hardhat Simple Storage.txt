@@ -26,3 +26,5 @@ and then delete it
 
 
 DEPLOYING SIMPLESTORAGE FROM HARDHAT
+Compile -> yarn hardhat compile
+Deploy -> 
