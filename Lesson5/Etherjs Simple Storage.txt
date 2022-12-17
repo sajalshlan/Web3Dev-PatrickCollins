@@ -75,6 +75,8 @@ NOW WE need a provider, a signer and the contract:
 7. done, now deploy!
     const contract = await contractFactory.deploy();
 
+    Calling deploy() on a ContractFactory will start the deployment, and return a Promise that resolves to a Contract. This is the object that has a method for each of your smart contract functions.
+
 DONE - you just deployed your smart contract to your local blockchain using ethersjs
 
 * TOH BASICALLY - to deploy a contract:
@@ -173,4 +175,4 @@ check on goerli etherscan and boom! done! deployed on goerli testnet
 
 
 
-LEARNED about what Alchemy does - and the mempool (the waiting area for your pending and due transactions)/
+LEARNED about what Alchemy does - and the mempool (the waiting area for your pending and due transactions)/ 
