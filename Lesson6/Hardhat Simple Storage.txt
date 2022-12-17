@@ -1,0 +1,8 @@
+//It's going to be funnnn!
+
+INTRO
+Hardhat - a flexible JS based development environment to compile, deploy, test and debug EVM based smart contracts - makes things way easier!
+
+
+
+HARDHAT SETUP
