@@ -57,18 +57,69 @@ same as web3js but we be using ethers is coz it powers the Hardhat environment, 
 1. install ethers - yarn add ethers
 
 2. import ethers to your file -> const ethers = require("ethers")
-now ethers gives us many features and functions - out of which rappers are used to make those api calls - create our provider object in our main function - instead of us dealing with all those fetch and axios requests
+now ethers gives us many features and functions - out of which wrappers are used to make those api calls - create our provider object in our main function - instead of us dealing with all those fetch and axios requests
+
+NOW WE need a provider, a signer and the contract:
 
 3. Now make a provider function and use the RPC of ganache
-  -> this is the way our script is going to connect to our blockchain
+  -> this is the way our script is going to connect to our blockchain, provides a read-only access to the blockchain and its status.
 
-4. now get our wallet's private key - to sign deploying this contract
+4. now we need a signer - our wallet's private key - to sign deploying this contract
 
 5. now in order to deploy our contract to the blockchain, we need ABI and the binary compiled code of the contract
  -> we'll be using 'fs' and locate those two files
 
-6. now we need to create a contract factory - just a ethers object you can use to deploy contracts
+6. now we need to create a contract factory - just a ethers object you can use to deploy contracts - 
+    const contractFactory = new ethers.ContractFactory(abi, binary, wallet);
 
- TOH BASICALLY - to deploy a contract:
+7. done, now deploy!
+    const contract = await contractFactory.deploy();
+
+DONE - you just deployed your smart contract to your local blockchain using ethersjs
+
+* TOH BASICALLY - to deploy a contract:
  1. we need the blockchain's RPC url and our wallet's private key
  2. we need the ABI and binary code of our contract to be deployed
+
+
+
+ADDING TRANSACTION OVERRIDES
+Basically all the extra things like choosing how much ether to send, setting the gas priority fee, etc, eg-
+    const contract = await contractFactory.deploy({gasPrice: 100000});
+
+
+
+TRANSACTION RECEIPTS
+Transaction receipt is different from Transaction Response (deployment Transaction) as deployment Transaction is simply a response that the transaction is deployed while transaction receipt is when you wait for block confirmation and then get the receipt
+ eg - const transactionReceipt = await contract.deployTransaction.wait(1);
+ means wait for 1 block confirmation - give us the transaction receipt when 1 block is confirmed to the blockchain - can change the wait parameter.
+
+
+
+SENDING A 'RAW' TRANSACTION IN ETHERSJS
+Deploying a contract is essentally sending a transaction 
+here in this transaction, we are defining a transaction by ourselves, and then using our wallet (our private key) to sign the transaction and send it to the blockchain
+
+if you are sending a transaction - that automatically signs the transaction first (its written in its function already to sign first and then send the transaction to the block), eg - 
+    console.log("Let's deploy this with transaction data only");
+
+  //   const nonce = await wallet.getTransactionCount();
+
+  //   const tx = {
+  //     nonce: nonce,
+  //     gasPrice: 20000000000,
+  //     gasLimit: 1000000,
+  //     to: null,
+  //     value: 0,
+  //     data: "put the .bin data here"
+  //     chainId: 1337,
+  //   };
+
+  //   const sentTxResponse = await wallet.sendTransaction(tx);
+  //   await sentTxResponse.wait(1);
+  //   console.log(sentTxResponse);
+
+
+
+INTERACTING WITH CONTRACTS IN ETHERSJS
+its best to get and pass parameter/values in string format (or Big Number format) as JS ki phatt jaati hi when dealing with big numbers (acc to IEEE 754), so when receiving a number, stringify it (.toString()) and when passing an arguement - ("7").
