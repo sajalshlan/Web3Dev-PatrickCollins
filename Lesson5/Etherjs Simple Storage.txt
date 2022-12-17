@@ -173,4 +173,4 @@ check on goerli etherscan and boom! done! deployed on goerli testnet
 
 
 
-LEARNED about what Alchemy does - and the mempool (the waiting area for your pending and due transactions)
+LEARNED about what Alchemy does - and the mempool (the waiting area for your pending and due transactions)/
