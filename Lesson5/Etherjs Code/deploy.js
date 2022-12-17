@@ -1,5 +1,6 @@
 const ethers = require("ethers");
 const fs = require("fs-extra");
+require("dotenv").config();
 
 async function main() {
   //compile this code
@@ -7,9 +8,9 @@ async function main() {
 
   //deploying this code/contract
 
-  const provider = new ethers.providers.JsonRpcProvider("");
+  const provider = new ethers.providers.JsonRpcProvider(process.env.RPC_URL);
 
-  const wallet = new ethers.Wallet("", provider);
+  const wallet = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
 
   const abi = fs.readFileSync("./SimpleStorage_sol_SimpleStorage.abi", "utf8");
 
@@ -35,6 +36,9 @@ async function main() {
   //using double quotes, i.e, passing 7 as string as it's better to pass variables as strings, and ethers is smart enough to get that it is actually a number
 
   const transactionReceipt = await transactionResponse.wait(1);
+
+  const updatedFavoriteNumber = await contract.retrieve();
+  console.log(`Updated fav number: ${updatedFavoriteNumber.toString()}`);
 }
 
 main()

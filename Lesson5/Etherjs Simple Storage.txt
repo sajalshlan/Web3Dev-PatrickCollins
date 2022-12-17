@@ -123,3 +123,30 @@ if you are sending a transaction - that automatically signs the transaction firs
 
 INTERACTING WITH CONTRACTS IN ETHERSJS
 its best to get and pass parameter/values in string format (or Big Number format) as JS ki phatt jaati hi when dealing with big numbers (acc to IEEE 754), so when receiving a number, stringify it (.toString()) and when passing an arguement - ("7").
+
+so first deploy the contract:
+    const contract = await contractFactory.deploy();
+    console.log(contract);
+
+  await contract.deployTransaction.wait(1);
+
+then, let's interact:
+  //getting a number - interacting with our contract
+
+  const currentFavoriteNumber = await contract.retrieve();
+  console.log(`Current fav number: ${currentFavoriteNumber.toString()}`);
+
+  //storing a number - interacting with our contract
+  const transactionResponse = await contract.store("7");
+  //using double quotes, i.e, passing 7 as string as it's better to pass variables as strings, and ethers is smart enough to get that it is actually a number
+
+  const transactionReceipt = await transactionResponse.wait(1);
+
+  const updatedFavoriteNumber = await contract.retrieve();
+  console.log(`Updated fav number: ${updatedFavoriteNumber.toString()}`);
+
+
+
+ENVIRONMENT VARIABLES
+never hardcode your private keys, always make a .env file and keep your private keys safe there:
+env variable is a variable in our environment which WE can use in our terminal or in our scripting environment
