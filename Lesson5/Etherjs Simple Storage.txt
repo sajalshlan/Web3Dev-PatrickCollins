@@ -149,4 +149,28 @@ then, let's interact:
 
 ENVIRONMENT VARIABLES
 never hardcode your private keys, always make a .env file and keep your private keys safe there:
-env variable is a variable in our environment which WE can use in our terminal or in our scripting environment
+env variable is a variable in our environment which WE can use in our terminal or in our scripting environment, steps:
+ 1. yarn add dotenv
+ 2. make a .env file and add your private key there
+ 3. then to access environment variables, first - require("dotenv").config()
+ 4. then to use ... -> process.env.PRIVATE_KEY
+
+
+
+BETTER PK MANAGEMENT
+1. you can (instead of making a dotenv file), directly put the RPC_URL and PRIVATE_KEY in the terminal before deploying the contract.
+2. encrypt the pk there in your local system instead of storing the pk as plain text.
+
+For 2, we will make a JS file and run a code to encrypt our PK
+history -c -> to clear your terminal history
+better watch the video for this:   (07:34:09) ke baad
+
+
+
+DEPLOYING TO A TESTNET OR A MAINNET
+Just use the testnet rpc endpoints and your test private keys, and deploy -> node deploy.js!
+check on goerli etherscan and boom! done! deployed on goerli testnet
+
+
+
+LEARNED about what Alchemy does - and the mempool (the waiting area for your pending and due transactions)
