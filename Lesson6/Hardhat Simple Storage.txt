@@ -84,6 +84,16 @@ Now we need a etherscan API key - get it from etherscan, add that to your env fi
     }
 
 INTERACTING WITH CONTRACTS IN HARDHAT
+same as before
+
+
+
+ARTIFACTS TROUBLESHOOTING
+just delete the artifacts folder and run our deploy cmd (it will compile the code and generate the artifacts folder itself at first)
+
+
+
+CUSTOM HARDHAT TASKS
 
 
 
