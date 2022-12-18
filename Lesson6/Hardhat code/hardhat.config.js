@@ -2,10 +2,15 @@ require("@nomicfoundation/hardhat-toolbox")
 require("@nomiclabs/hardhat-etherscan")
 require("dotenv").config()
 require("./tasks/block-number")
+require("hardhat-gas-reporter")
 
-const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL
-const PRIVATE_KEY = process.env.PRIVATE_KEY
-const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY
+//adding this or operators below so that sometimes if the url was not there, so hardhat won't show so many errors.
+
+const GOERLI_RPC_URL =
+    process.env.GOERLI_RPC_URL || "https://eth-goerli/example"
+const PRIVATE_KEY = process.env.PRIVATE_KEY || "pKey"
+const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || "aKey"
+const COINMARKET_API_KEY = process.env.COINMARKET_API_KEY || "aKey"
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
@@ -24,6 +29,13 @@ module.exports = {
     },
     etherscan: {
         apiKey: ETHERSCAN_API_KEY,
+    },
+    gasReporter: {
+        enabled: false,
+        outputFile: "gas-report.txt",
+        noColors: true,
+        currency: "USD",
+        apiKey: COINMARKET_API_KEY,
     },
     solidity: "0.8.17",
 }
