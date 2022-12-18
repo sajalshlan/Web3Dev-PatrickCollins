@@ -1,5 +1,6 @@
 //imports
-const { ethers } = require("hardhat")
+const { ethers, run, network } = require("hardhat")
+require("dotenv").config()
 
 //main
 async function main() {
@@ -10,9 +11,33 @@ async function main() {
     console.log("deploying ...")
 
     const simpleStorage = await simpleStorageFactory.deploy()
-    await simpleStorage.deployed()
+    // await simpleStorage.deployed()
 
     console.log(`contract deployed to: ${simpleStorage.address}`)
+
+    //calling the verifying function
+    //doesn't make sense when deploying to local hardhat network as not hardhat scan, so check for that - can check for that using chainId, to see which one's testnet and mainnet
+
+    if (network.config.chainId === 5 && process.env.ETHERSCAN_API_KEY) {
+        await simpleStorage.deployTransaction.wait(6)
+        await verify(simpleStorage.address, [])
+    }
+}
+
+async function verify(contractAddress, args) {
+    console.log("verifying contract ...")
+    try {
+        await run("verify: verify", {
+            address: contractAddress,
+            constructorArguements: args,
+        })
+    } catch (e) {
+        if (e.message.toLowerCase().includes("already verified")) {
+            console.log("already verified!")
+        } else {
+            console.log(e)
+        }
+    }
 }
 
 //handling error in main function
