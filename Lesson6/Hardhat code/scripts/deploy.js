@@ -8,7 +8,7 @@ async function main() {
         "SimpleStorage"
     )
 
-    console.log("deploying ...")
+    console.log("deploying...")
 
     const simpleStorage = await simpleStorageFactory.deploy()
     // await simpleStorage.deployed()
@@ -34,7 +34,7 @@ async function main() {
 }
 
 async function verify(contractAddress, args) {
-    console.log("verifying contract ...")
+    console.log("verifying contract...")
     try {
         await run("verify:verify", {
             address: contractAddress,

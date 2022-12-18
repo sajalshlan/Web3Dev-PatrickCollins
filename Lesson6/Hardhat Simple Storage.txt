@@ -94,7 +94,38 @@ just delete the artifacts folder and run our deploy cmd (it will compile the cod
 
 
 CUSTOM HARDHAT TASKS
+when you do yarn hardhat, it shows you a menu, a list of tasks that can be performed - we can increase these tasks by adding plugins.
+we can even write our own tasks.
 
+make a folder - tasks/block-number.js
+    const { task } = require("hardhat/config");
+
+    task("block-number", "Prints the current block number").setAction(
+        async (taskArgs, hre) => {
+        const blockNumber = await hre.ethers.provider.getBlockNumber();
+        console.log(`Current block number: ${blockNumber}`);
+        }
+    );
+
+    module.exports = {};    
+
+scripts and tasks both can be used - prefer scripts for your own local dev env and tasks for plugins.
+
+
+
+HARDHAT LOCALHOST NODE
+yarn hardhat node -> runs a local blockchain node that you can interact with - giving you a localhost RPC URL and accounts with PK, and logging info when you make transactions using this local network (just define it first in the config file).
+
+
+
+HARDHAT CONSOLE
+a JS environment for us to run JS cmds to interact with any blockchain.
+    yarn hardhat console --network localhost
+works with any network
+
+
+
+RUNNING TESTS
 
 
 
