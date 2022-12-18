@@ -1,7 +1,7 @@
-leIt's going to be fun!
+It's going to be fun!
 
 DEBUGGING
-This is going to be the piece that is going to give you the superpower to unblock yourself from any coding issue I run into!
+This is going to be the piece that is going to give me the superpower to unblock myself from any coding issue I run into!
 
 Tinker and figure out yourself - keep hitting and trying
 Limit tinkering to 20 minutes -> take at least 15 min yourself -> exhaust yourself completely trying all the options
@@ -31,7 +31,7 @@ gitpod - a cloud development environment - run your code on a remote server, sim
 
 
 COMPILING OUR SOLIDITY CODE
-we need to install a solidity compiles - npm install solc
+we need to install a solidity compiler - npm install solc
 or yarn add solc
 
 then add a script: {
@@ -43,16 +43,14 @@ used to compile your code/
 
 
 GANACHE & NETWORKS
-Similar to a virtual machine in remix - ganache is one of that application.
+Similar to a virtual machine in remix - ganache is one of that application that would quickly fire up a personal Ethereum blockchain which you can use to run tests, execute commands, and inspect state while controlling how the chain operates.
 
-Ganache - Quickly fire up a personal Ethereum blockchain which you can use to run tests, execute commands, and inspect state while controlling how the chain operates.
-
-RPC - remote procedure call is the imp thing here - stands for a connection to a blockchain node that somebody is running - this rpc url helps us make API calls to and interact with a blockchain node
+RPC - remote procedure call is the imp thing here - stands for a connection to a blockchain node that somebody is running - this rpc url helps us make API calls to and interact with a blockchain node.
 
 
 
 INTRO TO ETHERS.JS
-same as web3js but we be using ethers is coz it powers the Hardhat environment, which we'll be using
+same as web3js but we be using Ethers coz it powers the Hardhat environment, which we'll be using later,
 
 1. install ethers - yarn add ethers
 
@@ -92,14 +90,14 @@ Basically all the extra things like choosing how much ether to send, setting the
 
 
 TRANSACTION RECEIPTS
-Transaction receipt is different from Transaction Response (deployment Transaction) as deployment Transaction is simply a response that the transaction is deployed while transaction receipt is when you wait for block confirmation and then get the receipt
+Transaction receipt is different from Transaction Response (deployment Transaction) as deployment Transaction is simply a response when the transaction is deployed while transaction receipt is when you wait for block confirmation and then get the receipt
  eg - const transactionReceipt = await contract.deployTransaction.wait(1);
- means wait for 1 block confirmation - give us the transaction receipt when 1 block is confirmed to the blockchain - can change the wait parameter.
+ means wait for 1 block confirmation - give us the transaction receipt when 1 block is confirmed to the blockchain - can change the wait parameter to whatever block confirmations we like.
 
 
 
 SENDING A 'RAW' TRANSACTION IN ETHERSJS
-Deploying a contract is essentally sending a transaction 
+Deploying a contract is essentally sending a transaction. 
 here in this transaction, we are defining a transaction by ourselves, and then using our wallet (our private key) to sign the transaction and send it to the blockchain
 
 if you are sending a transaction - that automatically signs the transaction first (its written in its function already to sign first and then send the transaction to the block), eg - 
