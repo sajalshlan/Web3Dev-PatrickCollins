@@ -61,6 +61,10 @@ we will add a plugin here - #hardhat-etherscan (you'll get it on hardhat documen
 
 Now we need a etherscan API key - get it from etherscan, add that to your env file and then hardhat config file and then create the verify function, call that at the end of the main function, but also add the error possibility that the contract we are trying to verify could already be verifed, and when calling this verify() in main(), see that it won't work out with local hardhat network -> for that, import network and check with chainId, so yeah that's pretty much it!
 
+    at the top:
+    const { ethers, run, network } = require("hardhat")
+
+
     if (network.config.chainId === 5 && process.env.ETHERSCAN_API_KEY) {
         await simpleStorage.deployTransaction.wait(6)
         await verify(simpleStorage.address, [])
@@ -115,6 +119,18 @@ scripts and tasks both can be used - prefer scripts for your own local dev env a
 
 HARDHAT LOCALHOST NODE
 yarn hardhat node -> runs a local blockchain node that you can interact with - giving you a localhost RPC URL and accounts with PK, and logging info when you make transactions using this local network (just define it first in the config file).
+
+    networks: {
+        goerli: {
+            url: GOERLI_RPC_URL,
+            accounts: [PRIVATE_KEY],
+            chainId: 5,
+        },
+        localhost: {
+            url: "http://127.0.0.1:8545/",
+            //accounts: thanks hardhat!,
+            chainId: 31337,
+        },
 
 
 
@@ -184,3 +200,18 @@ turn the enabled to false, whenever you dont want it
 
 
 
+SOLIDITY COVERAGE 
+a hardhat plugin / tool that goes to our tests and checks how many lines of our original smart contract are not covered thru these tests - hence showing what else needs to be covered/tested.
+
+    So, first the 2 evergreen steps to do:
+    1. yarn add --dev solidity-coverage
+    2. require("solidity-coverage)         in the hardhat config file
+
+    3. yarn hardhat coverage
+
+it will make a coverage folder and a coverage.json file -> add it to .gitignore
+
+
+
+HARDHAT WAFFLE
+ Waffle is a smart contract testing framework

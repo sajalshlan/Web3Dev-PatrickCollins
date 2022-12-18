@@ -3,6 +3,7 @@ require("@nomiclabs/hardhat-etherscan")
 require("dotenv").config()
 require("./tasks/block-number")
 require("hardhat-gas-reporter")
+require("solidity-coverage")
 
 //adding this or operators below so that sometimes if the url was not there, so hardhat won't show so many errors.
 
