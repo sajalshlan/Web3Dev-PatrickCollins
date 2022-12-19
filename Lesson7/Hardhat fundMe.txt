@@ -1,0 +1,25 @@
+It's so much fun to code smart contracts yo!
+
+
+LINTING
+solhint - solidity linter - linting is a process of running a program that will analyse code for potential errors - will give warnings and errors and best practices to write and format our code
+    yarn hardhat solhint contracts/*.sol
+
+
+
+HARDHAT DEPLOY
+keeping track of all of our deploys can get tricky- so install a package called hardhat-deploy - a hardhat plugin for replicable deployments and easy testing
+    the 2 evergreen process for downloading any package/plugin:
+    1. yarn add --dev hardhat-deploy
+    2. require("hardhat-deploy")             in the hardhat config file
+
+now delete the deploy file from scripts folder, and we will create a new deploy folder - and we will be writing our scripts here - and our yarn hardhat deploy will look here for modules - i.e, whenever we will run yarn hardhat deploy, all the scripts in the folder deploy will get run.
+
+    also, just add one more package (need to override the hardhat-ethers package with hardhat-deploy-ethers)
+
+    yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers
+
+    this will enable ethers to keep track of every deployment
+
+
+ 
