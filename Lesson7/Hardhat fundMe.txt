@@ -21,5 +21,58 @@ now delete the deploy file from scripts folder, and we will create a new deploy 
 
     this will enable ethers to keep track of every deployment
 
+ now the deploy function traditionally was like:
+    //import
+    //define main function
+    //call main function
 
+but now, it will look like (given in the hardhat-deploy script)
+    after running the function yarn hardhat deploy - the hardhat passes a hre object to the async function as a parameter, from which we obtain the things we need using destructuring of arrays.
+    
+    module.exports = async ({ getNamedAccounts, deployments }) => {
+        const { deploy, log } = deployments
+        const { deployer } = await getNamedAccounts()
+        const chainId = network.config.chainId
+    }
+
+    //we use namedAccounts, a method  given by the ethers library to easily game name to those different private key spots, mentioned in the network section of config file
+
+    so, in config file
+    namedAccounts: {
+        deployer: {
+            default: 0,
+            //different network mai different position:
+            31337: 1,
+        },
+    },
  
+
+
+MOCKING & HELPER-HARDHAT-CONFIG
+ we would want to deploy to the testnet as our last option coz its very slow, or only for testing - better to deploy on local network before
+
+ so, our current fundme.sol includes use of chainlink price feeds, that has a contract address hardcoded - and if we playing on our local hardhat node, no chainlink oracles are monitoring it, unlike testnets, so how can we work with price feeds or hard coded data here???
+ solution - mocking
+
+Mocking -> An object under test may have dependencies on other (complex) objects. To isolate the behaviour of the object you want to test you replace the other objects by mocks that simulate the behaviour of the real objects. This is useful if the real objects are impractical to incorporate into the unit test.
+
+In short, mocking is creating objects that simulate the behaviour of real objects.
+
+ so, when going for localhost or hardhat network, we want to use a mock
+
+
+ we will use aave protocol here for that functionality - x chain - y address
+                                                       - z chain - a address
+
+    make a new file - helper-hardhat-config
+    then do this:
+
+
+
+**IMP THING: 
+    this: 
+    const {helperConfig} = require("../helper-hardhat-config")
+
+    is same as:
+    const networkConfig = require("../helper-hardhat-config")  //networkConfig takes the whole file
+    const helperConfig = networkConfig.helperConfig
