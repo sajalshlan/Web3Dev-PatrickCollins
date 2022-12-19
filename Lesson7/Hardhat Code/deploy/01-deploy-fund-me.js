@@ -32,7 +32,7 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
 
     const fundMe = await deploy("FundMe", {
         from: deployer,
-        args: [], //put price feed address
+        args: [ethUsdPriceFeedAddress], //put price feed address
         log: true,
     })
 }

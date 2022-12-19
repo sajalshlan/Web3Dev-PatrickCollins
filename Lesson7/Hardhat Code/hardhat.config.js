@@ -46,5 +46,7 @@ module.exports = {
         currency: "USD",
         apiKey: COINMARKET_API_KEY,
     },
-    solidity: "0.8.17",
+    solidity: {
+        compilers: [{ version: "0.8.17" }, { version: "0.6.6" }],
+    },
 }
