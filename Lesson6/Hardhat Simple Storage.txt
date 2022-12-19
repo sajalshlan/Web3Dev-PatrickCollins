@@ -74,7 +74,7 @@ Now we need a etherscan API key - get it from etherscan, add that to your env fi
     async function verify(contractAddress, args) {
         console.log("verifying contract ...")
         try {
-         await run("verify: verify", {
+         await run("verify:verify", {
                 address: contractAddress,
                 constructorArguements: args,
             })
@@ -144,14 +144,16 @@ works with any network
 RUNNING TESTS
 an important site - rekt having the list of all hacked contracts and how they got hacked - should read to learn writing better tests and better smart contracts.
 
-make a file - tests/test-deploy.js -> using Mocha as our JS based test framework and Chai as our JS based assertion library used with Mocha.
+make a file - tests/test-deploy.js -> using Mocha as our JS based test framework and Chai as our JS based assertion library along with Mocha.
 
     const { ethers } = require("hardhat")
     const { expect, assert } = require("chai")
 
     describe("SimpleStorage", function () {
     //making these variables global so that later the it() test can also access them
+
     let simpleStorageFactory, simpleStorage
+    
     beforeEach(async function () {
         simpleStorageFactory = await ethers.getContractFactory("SimpleStorage")
         simpleStorage = await simpleStorageFactory.deploy()
