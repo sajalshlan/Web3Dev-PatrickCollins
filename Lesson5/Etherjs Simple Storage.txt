@@ -146,7 +146,7 @@ then, let's interact:
   console.log(`Updated fav number: ${updatedFavoriteNumber.toString()}`);
 
 
-
+ 
 ENVIRONMENT VARIABLES
 never hardcode your private keys, always make a .env file and keep your private keys safe there:
 env variable is a variable in our environment which WE can use in our terminal or in our scripting environment, steps:

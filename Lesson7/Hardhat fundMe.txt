@@ -120,3 +120,19 @@ READ about natspec here: [https://docs.soliditylang.org/en/latest/style-guide.ht
 
 
 TESTING FUND ME
+making 2 folders in /test/ -> staging and unit
+Unit test - done locally - test units/small pieces of our contract to see if they work efficiently
+on - local hardhat
+   - forked hardhat
+
+staging test - done on a testnet
+
+    Diff btw Mocha, Chai, Waffle
+   ./while Waffle and Mocha are both test frameworks, they are used for different things.
+
+    Mocha runs your tests, as defined with describe, it, etc.
+    Chai asserts that the values in your tests are correct. (expect, assert)
+    Waffle provides tools for compiling and deploying contracts, functions for testing contracts, contract mocks, extra Chai assertions etc. It can be used in addition to Mocha (as well as other test runners like Jest), Waffle does not run tests itself.
+
+Keep checking solidity coverage in btw - yarn hardhat coverage - to see how much lines we covered and how much left.
+

@@ -49,7 +49,7 @@ async function verify(contractAddress, args) {
     }
 }
 
-//handling error in main function
+//calling the main function
 
 main().catch((error) => {
     console.error(error)
