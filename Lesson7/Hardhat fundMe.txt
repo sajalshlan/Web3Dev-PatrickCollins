@@ -136,3 +136,13 @@ staging test - done on a testnet
 
 Keep checking solidity coverage in btw - yarn hardhat coverage - to see how much lines we covered and how much left.
 
+
+
+BREAKPOINTS & DEBUGGING
+using breakpoints and javascript debugger
+also, you can add and import hardhat-console.sol -> and then use console.log() statements in our solidity contract as if it is a javascript file. - helpful in debugging.
+
+
+
+TESTING FUND ME II
+
