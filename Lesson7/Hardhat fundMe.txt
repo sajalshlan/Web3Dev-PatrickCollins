@@ -1,5 +1,5 @@
 It's so much fun to code smart contracts yo!
-
+mere muhn se nikal gayi :(
 
 LINTING
 solhint - solidity linter - linting is a process of running a program that will analyse code for potential errors - will give warnings and errors and best practices to write and format our code
@@ -13,7 +13,7 @@ keeping track of all of our deploys can get tricky- so install a package called 
     1. yarn add --dev hardhat-deploy
     2. require("hardhat-deploy")             in the hardhat config file
 
-now delete the deploy file from scripts folder, and we will create a new deploy folder - and we will be writing our scripts here - and our yarn hardhat deploy will look here for modules - i.e, whenever we will run yarn hardhat deploy, all the scripts in the folder deploy will get run.
+now delete the deploy file from scripts folder, and we will create a new deploy folder - and we will be writing our scripts here - and our yarn hardhat deploy will look here for modules - i.e, whenever we will run yarn hardhat deploy, all the scripts in the folder deploy will get executed.
 
     also, just add one more package (need to override the hardhat-ethers package with hardhat-deploy-ethers)
 
@@ -27,7 +27,7 @@ now delete the deploy file from scripts folder, and we will create a new deploy 
     //call main function
 
 but now, it will look like (given in the hardhat-deploy script)
-    after running the function yarn hardhat deploy - the hardhat passes a hre object to the async function as a parameter, from which we obtain the things we need using destructuring of arrays.
+    after running the function yarn hardhat deploy - the hardhat passes a 'hre' object to the async function as a parameter, from which we obtain the things we need using destructuring of arrays.
     
     module.exports = async ({ getNamedAccounts, deployments }) => {
         const { deploy, log } = deployments
@@ -61,8 +61,8 @@ In short, mocking is creating objects that simulate the behaviour of real object
  so, when going for localhost or hardhat network, we want to use a mock
 
 
- we will use aave protocol here for that functionality - x chain - y address
-                                                       - z chain - a address
+ we will use aave protocol here for that functionality-> x chain - y address
+                                                      -> z chain - a address
 
     make a new file - helper-hardhat-config
     then do this:
@@ -76,3 +76,47 @@ In short, mocking is creating objects that simulate the behaviour of real object
     is same as:
     const networkConfig = require("../helper-hardhat-config")  //networkConfig takes the whole file
     const helperConfig = networkConfig.helperConfig
+
+//getNamedAccounts shit
+basically i am ded
+
+
+
+UTILS FOLDER
+add your verify.js file here, then export and stuff
+
+
+
+SOLIDITY STYLE GUIDE
+
+Layout contract elements in the following order:
+    Pragma statements
+    Import statements
+    Error statements
+    Interfaces
+    Libraries
+    Contracts
+
+Inside each contract, library or interface, use the following order:
+    Type declarations
+    State variables
+    Events
+    Errors
+    Modifiers
+    Functions
+
+In functions:
+    constructor
+    receive
+    fallback
+    external
+    public
+    internal
+    private
+    view/pure
+
+READ about natspec here: [https://docs.soliditylang.org/en/latest/style-guide.html#natspec]
+
+
+
+TESTING FUND ME
