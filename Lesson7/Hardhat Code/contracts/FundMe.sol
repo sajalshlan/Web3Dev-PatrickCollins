@@ -24,7 +24,7 @@ contract FundMe {
 
     AggregatorV3Interface public priceFeed;
     
-    //Modifiers
+    //Modifiers 
     modifier onlyOwner {
         // require(msg.sender == owner);
         if (msg.sender != i_owner) revert FundMe__NotOwner();

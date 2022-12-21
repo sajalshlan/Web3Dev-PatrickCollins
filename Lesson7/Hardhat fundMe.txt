@@ -67,7 +67,28 @@ In short, mocking is creating objects that simulate the behaviour of real object
     make a new file - helper-hardhat-config
     then do this:
 
+    const networkConfig = {
+        5: {
+            name: "goerli",
+            ethUsdPriceFeed: "0xD4a33860578De61DBAbDc8BFdb98FD742fA7028e",
+        },
+        // 137: {
+        //     name: "polygon",
+        //     ethUsdPriceFeed: "",
+        // },
+        //31337
+    }
 
+    but what about our localhost? - we have priceFeedAddress for our testnets but we don't have a priceFeedAddress for our localhost/hardhat node - so we will mock a AggregatorV3Interface
+
+    if the contract doens't exist, we deploy a minimal version for our local testing
+
+    use module.exports.tags = ["all","mocks"]    in the end.
+
+    when you do - yarn hardhat node -> our local blockchain node will come and it will have both the deploy scripts executed already,
+
+*IMP THING:
+    An interface object gets compiled down to an ABI and when you match that ABI with an address -> you get a contract.   
 
 **IMP THING: 
     this: 
@@ -83,6 +104,7 @@ basically i am ded
 
 
 UTILS FOLDER
+this includes the auto programmatic verification/
 add your verify.js file here, then export and stuff
 
 
@@ -146,3 +168,15 @@ also, you can add and import hardhat-console.sol -> and then use console.log() s
 
 TESTING FUND ME II
 
+Fixture helps us run our deploy folder with as many tags possible
+        await deployments.fixture(["all"])
+
+ethers.getContract("FundMe", )   -> gives us the most recently deployed version of the FundMe contract and then with deployer, we can give an account to make transactions with - so give deployer by getNamedAccounts:
+
+    const {deployer} = await getNamedAccounts()
+
+    another way to do that:
+
+    const accounts = await ethers.getSigners()     /gets all accounts for us
+    const accountZero = accounts[0]         /and for hardhat network - gets 10 fake addresses
+    
