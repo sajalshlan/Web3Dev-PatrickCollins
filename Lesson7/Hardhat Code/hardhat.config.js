@@ -2,7 +2,7 @@ require("@nomicfoundation/hardhat-toolbox")
 require("@nomiclabs/hardhat-etherscan")
 require("dotenv").config()
 // require("../tasks/block-number")
-// require("hardhat-gas-reporter")
+require("hardhat-gas-reporter")
 require("solidity-coverage")
 require("hardhat-deploy")
 
@@ -41,11 +41,11 @@ module.exports = {
         },
     },
     gasReporter: {
-        enabled: false,
+        enabled: true,
         outputFile: "gas-report.txt",
         noColors: true,
         currency: "USD",
-        apiKey: COINMARKET_API_KEY,
+        // apiKey: COINMARKET_API_KEY,
     },
     solidity: {
         compilers: [{ version: "0.8.17" }, { version: "0.6.6" }],

@@ -191,3 +191,16 @@ didn't understand this line:
 
 
 STORAGE IN SOLIDITY
+2 types of storage locations - memory and storage.
+Memory - created with the contract and all the variables/functions with memory location gets wiped out when the work with the contract is done - i.e, made only for the duration of function running.
+Storage - solidity stores all the state variables(global variables) in a 32 bit area, stores array with its length and for mapping data structure it keeps the location empty by which solidity will understand that there's a mapping here.
+
+Used in gas optimization - read solidity docs for more.
+
+
+
+GAS OPTIMATION USING STORAGE KNOWLEDGE
+first update the name of all the storage variables -give them a prefix - 's_'
+
+basically doing changes for gas optimization - reduce the number of operations with state variables as mul, div, add, comparing - anything with storage costs more gas than dealing with memory variables.
+so made a cheaperWithdraw() function, tested it, and it did save a lil gas (by viewing gas reporter.txt).

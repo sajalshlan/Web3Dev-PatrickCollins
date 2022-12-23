@@ -191,3 +191,59 @@ Rollups - A sharded blockchain built on top of a layer1 blockchain
         - solving scalablility issues by being a blockchain people can make transaction on, still on this base Ethereum layer
 
 Rollups are different from Sidechains as Sidechains derive their security from their own protocols, while rollups derive their security from the base layers      
+
+
+
+
+//Extra infos:
+
+DIFF BETWEEN MOCHA, CHAI AND WAFFLE:
+
+        Mocha is a testing framework.
+
+        It provides:
+
+        tools for setting up test suites and cases (describe/context, it/test, hooks for setup and tear down like before/after[each/all])
+
+        a test runner which will execute the test suited and cases
+
+        some other bits like coverage reporting (how much if codebase is “covered” by tests), global configuration etc
+
+        It is very flexible and allows you to use any assertion library you want within the test cases.
+
+
+        Chai is an assertion library
+
+        Assertion libraries provide tools called matchers for asserting whether the output/result of a call (any expression) in a test matches what you expect.
+
+        Chai comes with common matchers for numbers, strings, objects etc.
+
+        Chai works with the expect function which wraps around some call you make and then let’s you chain the matchers onto it.
+
+
+        Waffle is a matcher library *that extends Chai to provide matchers specifically for testing EVM contract interactions
+
+        While Chai gives you the core matchers, Waffle extends it to give you matchers for BigNumber, accounts (as hex strings), balances (for ERC20/721 etc), event emitting and so forth. These are things you could match with Chai alone but instead of reinventing the wheel you just use Waffle. Check out the waffle Chai matchers docs they have great examples.
+
+
+        *Waffle is itself a framework that wraps mocha/chai, solc (for compiling contracts) and more. But where I’ve seen it used most is with its chai matchers giving those other responsibilities to truffle/hardhat.
+
+
+        EthersJS is like an ORM for the EVM
+
+        If you’re not familiar with databases and ORMs then the simplest explanation is that it’s a converter (“mapper”) from one domain to another. A DB ORM will convert from database representation (documents, rows/columns etc) into an object representation in your domain (JS in this case).
+
+        So ethers is a tool to convert EVM / contract / account representation into JS objects. It lets you treat a contract, account etc as a JS object and interact with it through its properties and methods.
+
+        Beyond the mapping it gives you the ability to configure the connection (through Providers), common utilities for interacting with EVM chain data, wallet/keypair generation etc.
+
+        It’s also got some pretty decent docs and (imo) a cleaner API than web3.
+
+        If you are using hardhat then ethers will be wrapped by the hardhat runtime environment (HRE) so the provider is already configured and a bunch of convenience utilities are added to ethers (for deploying / loading contracts).
+
+        [https://www.reddit.com/r/solidity/comments/vakaze/mocha_waffle_chai_and_ethers_js/]
+
+Ques: Wonderful. BTW what other sources has the right info about all these tools other than docs!? Any advice?
+
+Ans: Man idk. Just docs and building / using them. Like just start coding and search along the way.
+Maybe you can find example projects with tests too. But for me it was just experiential.

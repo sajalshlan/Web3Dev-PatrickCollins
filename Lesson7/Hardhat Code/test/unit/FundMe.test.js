@@ -135,12 +135,12 @@ describe("FundMe", async function () {
             }
         })
 
-        it("only allows the owner to withdraw the amount", async () => {
-            const accounts = await ethers.getSigners()
-            const attacker = accounts[1]
+        // it("only allows the owner to withdraw the amount", async () => {
+        //     const accounts = await ethers.getSigners()
+        //     const attacker = accounts[1]
 
-            const attackerConnectedContract = await fundMe.connect(attacker)
-            await expect(attackerConnectedContract.withdraw()).to.be.reverted
-        })
+        //     const attackerConnectedContract = await fundMe.connect(attacker)
+        //     await expect(attackerConnectedContract.withdraw()).to.be.reverted
+        // })
     })
 })
