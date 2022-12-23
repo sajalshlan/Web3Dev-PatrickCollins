@@ -193,9 +193,15 @@ didn't understand this line:
 STORAGE IN SOLIDITY
 2 types of storage locations - memory and storage.
 Memory - created with the contract and all the variables/functions with memory location gets wiped out when the work with the contract is done - i.e, made only for the duration of function running.
-Storage - solidity stores all the state variables(global variables) in a 32 bit area, stores array with its length and for mapping data structure it keeps the location empty by which solidity will understand that there's a mapping here.
+Storage - solidity stores all the state variables(global variables) in chunks of 32 bit areas, stores array with its length and for mapping data structure it keeps the location empty by which solidity will understand that there's a mapping here. Dynamic data structures like array use hashing function to deal with their content/values (maybe keccak256, read in the docs)
 
-Used in gas optimization - read solidity docs for more.
+any variables/arrays that we want to persist for all transactions - we store them in a giant array called as Storage, that just costs more.
+Loading word to storage and saving word to storage is two of the most gas expensive calls.
+
+memory, constant and immutable variables don't go into the Storage.
+
+Used in gas optimization - read solidity docs for more
+[https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html]
 
 
 
@@ -204,3 +210,56 @@ first update the name of all the storage variables -give them a prefix - 's_'
 
 basically doing changes for gas optimization - reduce the number of operations with state variables as mul, div, add, comparing - anything with storage costs more gas than dealing with memory variables.
 so made a cheaperWithdraw() function, tested it, and it did save a lil gas (by viewing gas reporter.txt).
+see the difference btw the functions: 
+
+    function withdraw() public onlyOwner {
+        for (uint256 funderIndex=0; funderIndex < s_funders.length; funderIndex++){
+            address funder = s_funders[funderIndex];
+            s_addressToAmountFunded[funder] = 0;
+        }
+        s_funders = new address[](0);
+        
+        (bool callSuccess, ) = payable(msg.sender).call{value: address(this).balance}("");
+        require(callSuccess, "Call failed");
+    }
+    
+    function cheaperWithdraw() public onlyOwner{
+        address[] memory funders = s_funders;
+        for(uint funderIndex=0;funderIndex<funders.length;funderIndex++){
+            address funder = funders[funderIndex];
+            s_addressToAmountFunded[funder]=0;
+        }
+        s_funders = new address[](0);
+        (bool callSuccess, ) = i_owner.call{value: address(this).balance}("");
+        require(callSuccess, "Call failed");
+
+    }
+
+
+//in cheaperWithdraw(), we are not constantly looping over the s_funders and reading and obtaining the funder from that, we made a memory array of funders, saved all the gas by reading from memory array rather than storage array.
+
+
+
+SOLIDITY CHAINLINK STYLE GUIDE
+devs/users interacting with your fundMe contract don't want to deal with all these s_ variables, doesn't look good/clean.
+so make some view return functions with proper names at the end (view functions in the end acc to style guide), and then return those s_ variables there.
+
+
+
+ADDING SCRIPTS TO YOUR PACKAGE.JSON
+    "scripts": {
+        "test": "hardhat test",
+        "test:staging": "hardhat test --network goerli",
+        "lint": "solhint 'contracts/**/*.sol'",
+        "lint:fix": "solhint 'contracts/**/*.sol' --fix",
+        "format": "prettier --write .",
+        "coverage": "hardhat coverage"
+       }
+
+I am curious to new tools
+I try them out and make them work for me
+that's how you get comfortable with new things quickly
+
+The future belongs to those who learn more skills and combine them in creative ways.
+                                                            - Robert Greene, Mastery
+
