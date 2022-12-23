@@ -1,2 +1,5 @@
 its going to be super fun!!!!
 
+CONNECTING HTML TO METAMASK
+Basically the metamask extension provides a windows.ethereum object to the windows DOM which we can access, it further provides a provider method to connect to blockchain nodes. 
+just a line of code, let's write the HTML and js for that.
