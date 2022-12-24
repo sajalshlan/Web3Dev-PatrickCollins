@@ -1,2 +1,10 @@
 Its going to be superrrr fun!!!
 
+HARDHAT SETUP
+    yarn init
+    yarn add --dev hardhat
+    yarn hardhat > select a empty hardhat file, then copy the dependancies from source code(you can see what dependancies we installed in package.json file)
+
+Now always comment and write in the start of your contract that what are you building - break them down into small goals/fncs
+
+also, instead of require statements and storing that big string as our revert message, we can use custom errors.
