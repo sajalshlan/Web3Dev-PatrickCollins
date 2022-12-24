@@ -4,7 +4,7 @@ CONNECTING HTML TO METAMASK
 Basically the metamask extension provides a windows.ethereum object to the windows DOM which we can access, it further provides a provider method to connect to blockchain nodes. 
 just a line of code, let's write the HTML and js for that.
 
-So basically, we are using the frontend version of ethers when working with raw js files, later when we will work with nextjs/reactjs - we will have the needed node modoules for ethers and yarn will do that manual work for us that we just did (copy pasting the library to our local code).
+So basically, we are using the frontend version of ethers when working with raw js files, later when we will work with nextjs/reactjs - we will have the needed node modules for ethers and yarn will do that manual work for us that we just did (copy pasting the library to our local code).
 
 then, let's make a fund() function similar to connect() function.
 
