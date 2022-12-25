@@ -37,7 +37,7 @@ module.exports = {
         deployer: {
             default: 0,
             //different network mai different position:
-            31337: 1,
+            31337: 0,
         },
     },
     gasReporter: {
