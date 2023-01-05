@@ -48,7 +48,7 @@ Artists(creates unique digital artworks) > EtherCards Framework(provides tools f
 Decentralized Event-Driven Execution
 
 Keepers are the chainlink nodes that listen to the registration contract for different events specify to fire
-chainlink nodes constantly listen to these trigers to happen and checks different contracts for these triggers - once these triggers return true, chainlink nodes will perform whatever action that you've coded.
+chainlink nodes constantly listen to these triggers to happen and checks different contracts for these triggers - once these triggers return true, chainlink nodes will perform whatever action that you've coded.
 
 
  
