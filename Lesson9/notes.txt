@@ -1,4 +1,5 @@
 Its going to be superrrr fun!!!
+It is the flagship project, if you learn this, then you have the skills to learn all the rest of the smart contract concepts 
 
 HARDHAT SETUP
     yarn init
