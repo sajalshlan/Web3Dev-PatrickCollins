@@ -58,6 +58,9 @@ recap tha
 
 
 INTERFACES & PRICE FEEDS
+
+Interfaces allow us to specify the expected behavior of a contract without having to specify the actual implementation, which can make it easier to change or upgrade the implementation without affecting the rest of the system.
+
 To interact with a contract outside of our contract, we need 2 things -
 
 1. ABI of the contract - basically a list of the functions by which you interact with a contract- only the name,type of the functions and doesn't include the logic of the function - the list of different functions and interactions that you can call > we use the concept of interface to get the ABI.
@@ -178,7 +181,10 @@ basically what it does it, when I take a variable uint8, it could store a max nu
 
 BASIC SOLIDITY FOR LOOP, RESETTING AN ARRAYS
 already known
-Resetting - funders = new address[](0);
+Resetting -> funders = new address[](0);
+
+The line above creates a new array of addresses called "funders" with a size of 0. 
+The "new address[]" part of the statement creates a new array of addresses, and the "(0)" part specifies that the array should have a size of 0 elements.
 
 
 
