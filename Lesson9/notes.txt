@@ -48,3 +48,14 @@ If you have the ABI, they are easy to decode, if not they're hard to and these n
 
 
 EVENTS IN RAFFLE.SOL
+Name events with the function name reversed.
+        event RaffleEntry(address indexed player);
+
+        emit RaffleEntry(msg.sender);
+
+Now it's a good practice to write your deploy scripts and test and the contracts all together and keep checking after every functions, but for simplicity, not gonna do here.
+
+
+
+INTRODUCTION TO CHAINLINK VRF 
+

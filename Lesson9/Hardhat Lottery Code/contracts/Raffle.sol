@@ -9,6 +9,7 @@ pragma solidity  ^0.8.17;
 
 //Chainlink Oracle -> Randomness, Automated Execution(Chainlink keepers)
 
+error RAFFLE__NotEnoughEthEntered();
 
 contract Raffle {
 
@@ -16,7 +17,9 @@ contract Raffle {
     uint private immutable i_entranceFee;
     address payable[] private s_players;
 
-    error RAFFLE__NotEnoughEthEntered();
+    /* Events */
+    event RaffleEntry(address indexed player);
+    
 
     constructor(uint entranceFee) {
         i_entranceFee = entranceFee;
@@ -29,6 +32,11 @@ contract Raffle {
             revert RAFFLE__NotEnoughEthEntered();
         }
         s_players.push(payable(msg.sender));
+
+        //emit an event whenever we update a dynamic array or mapping
+        //event named as reverse of function name
+    emit RaffleEntry(msg.sender);
+
     }
 
 
