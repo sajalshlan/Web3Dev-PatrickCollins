@@ -23,3 +23,28 @@ Now using the Chainlink Solidity Style Guide, we should return this entranceFee,
 Now in enterRaffle function, we need to do same as in fund function, that is require that msg.value<enterance fee, but let's do it in a more gas optimizing way using custom error, instead of require statements and storing that big string as our revert message.
 
 NOW declare a players array and make it payable as we'll be paying the winner.
+same return function for players at last and push msg.sender to players array in enterRaffle fnc.
+
+
+
+INTRODUCTION TO EVENTS
+Whenever we update any dynamic object like array or mapping, we need to omit an event.
+EVM logs all its details of the transaction in a data structure called "log"! and inside this log is an imp piece of logging called events.
+
+Events allow you to print info to this log, and is gas efficient as instead saving this info in storage variables
+
+Log and event live in a special data structure that isn't accessible to smart contracts, that is why it's cheaper -> Smart Contracts can't access logs.
+
+Each event is tied to the smart contract or account address that emitted this event in these transactions.
+
+The Graph listens to these events and stores them in the graph so that they're easy to query later on/
+
+When defining an event, you can have 2 types of parameters, indexed and non-indexed. We can have upto 3 indexed parameters, which are also called as topics; they are easily searchable and much easier to query than the non-indexed parameter
+
+Then we emit, similar to calling a fnc, and we are telling it to store the data into the logging data structure of EVM, by emitting an event.
+Now the non-indexed parameters gets stored as ABI encoded index parameters, meaning -> we took those non-indexed parameters, matched them together with their ABI, pumped them thru an encoding algorithm and at the end what we get is stored in the log data structure which we can also see on etherscan.
+If you have the ABI, they are easy to decode, if not they're hard to and these non-indexed parameters cost less gas to pump into the logs.
+
+
+
+EVENTS IN RAFFLE.SOL
