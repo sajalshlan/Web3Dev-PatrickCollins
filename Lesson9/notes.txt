@@ -13,9 +13,13 @@ HARDHAT SETUP
 
 
 RAFFLE.SOL SETUP
-
-
-
 Now always comment and write in the start of your contract that what are you building - break them down into small goals/fncs
 
-also, instead of require statements and storing that big string as our revert message, we can use custom errors.
+now entranceFee variable, with a visibility and make it storage variable first with adding the prefix "s_" with it
+now we will set it every time a contract is deployed, so let's make it immutable by changing its name as - "i_entranceFee" and adding the keyword immutable at the this variable's declaration.
+
+Now using the Chainlink Solidity Style Guide, we should return this entranceFee, as in users should be able to see it, so defining a function at last that returns this enterance fees.
+
+Now in enterRaffle function, we need to do same as in fund function, that is require that msg.value<enterance fee, but let's do it in a more gas optimizing way using custom error, instead of require statements and storing that big string as our revert message.
+
+NOW declare a players array and make it payable as we'll be paying the winner.
