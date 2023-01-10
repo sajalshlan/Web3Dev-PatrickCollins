@@ -1,10 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity  ^0.8.17;
 
-//Raffle contract
-//Enter the lottery - paying some amount
-//Winner to be selected every X minutes -> completly automated
-//Chainlink Oracle -> Randomness, Autmated execution (by chainlink keepers)
+//Raffle Contract
+
+//players entering with paying entry fee
+//pick a random winner -> verifyable random variable chainlink
+//winner selected every X minutes -> automate it
+
+//Chainlink Oracle -> Randomness, Automated Execution(Chainlink keepers)
+
 
 contract Raffle {
     uint private immutable i_entranceFee;

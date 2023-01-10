@@ -6,6 +6,16 @@ HARDHAT SETUP
     yarn add --dev hardhat
     yarn hardhat > select a empty hardhat file, then copy the dependancies from source code(you can see what dependancies we installed in package.json file)
 
+    then copy paste dependancies from the fcc github:
+
+    yarn add --dev @nomiclabs/hardhat-ethers@npm:hardhat-deploy-ethers ethers @nomiclabs/hardhat-etherscan @nomiclabs/hardhat-waffle chai ethereum-waffle hardhat hardhat-contract-sizer hardhat-deploy hardhat-gas-reporter prettier prettier-plugin-solidity solhint solidity-coverage dotenv
+
+
+
+RAFFLE.SOL SETUP
+
+
+
 Now always comment and write in the start of your contract that what are you building - break them down into small goals/fncs
 
 also, instead of require statements and storing that big string as our revert message, we can use custom errors.
