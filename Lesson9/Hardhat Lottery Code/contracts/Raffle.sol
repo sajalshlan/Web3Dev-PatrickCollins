@@ -11,13 +11,22 @@ pragma solidity  ^0.8.17;
 
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
+import "@chainlink/contracts/src/v0.8/AutomationCompatible.sol";
 
 
 /* Errors */
 error RAFFLE__NotEnoughEthEntered();
 error RAFFLE__TransferFailed();
+error RAFFLE_NotOpen();
 
-contract Raffle is VRFConsumerBaseV2{
+
+contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
+
+    /* Type declaration */
+    enum RaffleState {
+        OPEN,
+        CALCULATING
+    } //uint 0 = OPEN, 1 = CALCULATING
 
     /* State Variables */
     uint private immutable i_entranceFee;
@@ -31,6 +40,7 @@ contract Raffle is VRFConsumerBaseV2{
 
     /* Lottery Variables */
     address payable private s_recentWinner;
+    RaffleState private s_raffleState;
 
 
     /* Events */
@@ -45,6 +55,7 @@ contract Raffle is VRFConsumerBaseV2{
         i_gasLane = gasLane;
         i_subscriptionId = subscriptionId;
         i_callbackGasLimit = callbackGasLimit;
+        s_raffleState = RaffleState.OPEN;
     }
 
     //making enterRaffle payable as people will sending eth, hence we accepting msg.value
@@ -53,6 +64,10 @@ contract Raffle is VRFConsumerBaseV2{
         if(msg.value<i_entranceFee){
             revert RAFFLE__NotEnoughEthEntered();
         }
+        
+        if(s_raffleState != RaffleState.OPEN)
+            revert RAFFLE_NotOpen();
+
         s_players.push(payable(msg.sender));
 
         //emit an event whenever we update a dynamic array or mapping
@@ -61,12 +76,25 @@ contract Raffle is VRFConsumerBaseV2{
 
     }
 
+    /**
+     * @dev this is the function that the chainlink keeper nodes call
+     * they look for the `upkeepNeeded` to return true.
+     * The following should be true in order to return true:
+     * 1. time interval should have passed
+     * 2. lottery should have atleast 1 player and some ETH
+     * 3. we should have test LINK in our subscription
+     * 4. lottery should be in an 'open' state, meaning when the random number is returning, it should not allow any new players to join in
+     */
+
+    function checkUpkeep(bytes calldata /* checkData */) external override returns(bool upkeepNeeded, bytes memory /* performData */) {
+
+    }
 
      function requestRandomWinner() external {
         //request a random number
         //do something with it
         //make it a 2 transaction process, harder for people to manipulate then
-
+        s_raffleState = RaffleState.CALCULATING;
         uint requestId = i_vrfCoordinator.requestRandomWords(
             i_gasLane, //gas lanes - a has lane key hash value, max price you are willing to pay for a req
             i_subscriptionId,
@@ -77,12 +105,12 @@ contract Raffle is VRFConsumerBaseV2{
         emit RequestedRaffleWinner(requestId);
      }
 
-     function fulfillRandomWords(uint /*requestId*/, uint[] memory randomWords) internal override{
+     function fulfillRandomWords(uint /* requestId */, uint[] memory randomWords) internal override{
         uint indexOfTheWinner = randomWords[0] % s_players.length;
         address payable recentWinner = s_players[indexOfTheWinner];
 
         s_recentWinner = recentWinner;
-        
+        s_raffleState = RaffleState.OPEN;
         //now since we got recent winner, let's transfer them the money
         (bool success, ) = recentWinner.call{value: address(this).balance}("");
         if(!success) revert RAFFLE__TransferFailed();

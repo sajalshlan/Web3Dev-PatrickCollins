@@ -60,7 +60,7 @@ Now it's a good practice to write your deploy scripts and test and the contracts
 INTRODUCTION TO CHAINLINK VRF 
 adding subscriber to get a random number section in chainlink docs.
 
-
+[https://docs.chain.link/vrf/v2/introduction]
 
 IMPLEMENTING CHAINLINK VRF
 external functions are lil bit cheaper than public functions as it knows that our other functions in the smart contract are not going to call that
@@ -109,3 +109,35 @@ now, create an error instead of the revert statement while transfering the funds
 and create an event to keep a history of all the winners
 
 cool, now a warning in fulfillRandomWinner function - that we are taking the requestId but not using it, so to silence that, just comment out the name requestId.
+
+
+
+INTRODUCTION TO CHAINLINK KEEPERS
+now lets add keepers so that it automatically picks up the winner after some time and we don't have to interact with it
+There are 2 steps to building a chainlink keeper upkept smart contract:
+1. write a smart contract that's compatible using checkUpKeep and performUpKeep method
+2. register the smart contract with chainlink keepers network
+
+refer - [https://docs.chain.link/chainlink-automation/introduction/]
+
+import automation compatible interface and inherit our contract as we want to use the checkUpkeep and performUpkeep methods
+
+here, just writing the checkUpKeep function.
+
+
+
+ENUMS
+what if instead of just true and false, we wanted to have many different states - open, closed, pending, calculating -> like 0 be pending, 1 be closed, 2 be open like that
+so to keep track of all this, we use enums.
+
+Enums can be used to create custom types with a finite set of 'constant values'
+
+    enum RaffleState {
+        OPEN,
+        CALCULATING
+    } //uint 0 = OPEN, 1 = CALCULATING
+
+then define a variable of type RaffleState and pass RaffleState.OPEN with the constructor
+
+now create if condition in enterRaffle function with this new state variable that if lottery is OPEN, then only you can enter, and revert with a new custom error.
+similarly in requestRandomWinner function, switch the state to calculating so that other players can't enter
