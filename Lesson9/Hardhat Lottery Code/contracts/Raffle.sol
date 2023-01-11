@@ -9,9 +9,11 @@ pragma solidity  ^0.8.17;
 
 //Chainlink Oracle -> Randomness, Automated Execution(Chainlink keepers)
 
+import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
+
 error RAFFLE__NotEnoughEthEntered();
 
-contract Raffle {
+contract Raffle is VRFConsumerBaseV2{
 
     /* State Variables */
     uint private immutable i_entranceFee;
@@ -21,7 +23,7 @@ contract Raffle {
     event RaffleEntry(address indexed player);
     
 
-    constructor(uint entranceFee) {
+    constructor(address vrfCoordinatorV2, uint entranceFee) VRFConsumerBaseV2(vrfCoordinatorV2) {
         i_entranceFee = entranceFee;
     }
 
@@ -40,7 +42,15 @@ contract Raffle {
     }
 
 
-//     function pickRandomWinner() {}
+     function requestRandomWinner() external {
+        //request a random number
+        //do something with it
+        //make it a 2 transaction process, harder for people to manipulate then
+     }
+
+     function fulfillRandomWords(uint requestId, uint[] memory randomWords) internal override{
+
+     }
 
 function getEntranceFee() public view returns(uint){
     return i_entranceFee;

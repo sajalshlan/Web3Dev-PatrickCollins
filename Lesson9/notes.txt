@@ -58,4 +58,21 @@ Now it's a good practice to write your deploy scripts and test and the contracts
 
 
 INTRODUCTION TO CHAINLINK VRF 
+adding subscriber to get a random number section in chainlink docs.
 
+
+
+IMPLEMENTING CHAINLINK VRF
+external functions are lil bit cheaper than public functions as it knows that our other functions in the smart contract are not going to call that
+now let's go to pick a random number function.
+
+now making it a 2 transaction process, will make it secure and harder to manipulate.
+so renaming pickRandomWinner to requestRandomWinner and making another function where our request gets fulfilled.
+
+ok now import chainlink VRFConsumerBaseV2 and then use the function fulfillRandomWinner by overriding it and use vrfCoordinator, calling it with the constructor and make sure to inherit - contract Raffle is VRFConsumerBaseV2.
+
+and yea don't forget to yarn add --dev @chainlink/contracts.
+
+
+
+HARDHAT SHORTHAND
