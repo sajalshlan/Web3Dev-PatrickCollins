@@ -22,16 +22,17 @@ contract Raffle is VRFConsumerBaseV2{
     VRFCoordinatorV2Interface private immutable i_vrfCoordinator;
     bytes32 private immutable i_gasLane;
     uint64 private immutable i_subscriptionId;
-    uint64 private immutable i_callbackGasLimit;
+    uint32 private immutable i_callbackGasLimit;
     uint32 private constant NUM_WORDS = 1;
     uint16 private constant REQUEST_CONFIRMATIONS = 3;
 
 
     /* Events */
     event RaffleEntry(address indexed player);
+    event RequestedRaffleWinner(uint indexed requestId);
     
 
-    constructor(address vrfCoordinatorV2, uint entranceFee, bytes32 gasLane, uint64 subscriptionId, uint64 callbackGasLimit) VRFConsumerBaseV2(vrfCoordinatorV2) {
+    constructor(address vrfCoordinatorV2, uint entranceFee, bytes32 gasLane, uint64 subscriptionId, uint32 callbackGasLimit) VRFConsumerBaseV2(vrfCoordinatorV2) {
         i_vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinatorV2);
         i_entranceFee = entranceFee;
         i_gasLane = gasLane;
@@ -59,13 +60,14 @@ contract Raffle is VRFConsumerBaseV2{
         //do something with it
         //make it a 2 transaction process, harder for people to manipulate then
 
-        i_vrfCoordinator.requestRandomWords(
+        uint requestId = i_vrfCoordinator.requestRandomWords(
             i_gasLane, //gas lanes - a has lane key hash value, max price you are willing to pay for a req
             i_subscriptionId,
             REQUEST_CONFIRMATIONS,
             i_callbackGasLimit,
             NUM_WORDS
         );
+        emit RequestedRaffleWinner(requestId);
      }
 
      function fulfillRandomWords(uint requestId, uint[] memory randomWords) internal override{

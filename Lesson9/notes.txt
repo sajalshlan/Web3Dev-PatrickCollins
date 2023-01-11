@@ -86,4 +86,13 @@ eg - hh compile
 
 
 IMPLEMENTING CHAINLINK VRF - The Request
+ant shant
+
+basically filling in the request function from get a random number docs, and taking in all the values in the constructor.
+
+now using that i_vrfCoordinator.requestRandomWords() function, we will get back a request id, store it and use it in fulfill function and emit an event here - event RequestedRaffleWinner() and emit - emit RequestedRaffleWinner(requestId);
+
+
+
+IMPLEMENTING CHAINLINK VRF - The fulfill
 
