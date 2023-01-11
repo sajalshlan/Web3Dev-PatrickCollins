@@ -96,3 +96,16 @@ now using that i_vrfCoordinator.requestRandomWords() function, we will get back 
 
 IMPLEMENTING CHAINLINK VRF - The fulfill
 
+*Modulo
+the random number array generated has 2 things in it, and it is uint256 so it will be very big, now what to do
+we will use module here to get the index of the random winner and put it in our s_players array to get the address of the winner.
+
+now, store that recent winner in an storage variable and make a return function, making it public to return the recent winner at the end.
+
+Now transfer the funds to the recent winner's address.
+
+now, create an error instead of the revert statement while transfering the funds.
+
+and create an event to keep a history of all the winners
+
+cool, now a warning in fulfillRandomWinner function - that we are taking the requestId but not using it, so to silence that, just comment out the name requestId.

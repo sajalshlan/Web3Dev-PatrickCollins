@@ -12,7 +12,10 @@ pragma solidity  ^0.8.17;
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 
+
+/* Errors */
 error RAFFLE__NotEnoughEthEntered();
+error RAFFLE__TransferFailed();
 
 contract Raffle is VRFConsumerBaseV2{
 
@@ -26,10 +29,14 @@ contract Raffle is VRFConsumerBaseV2{
     uint32 private constant NUM_WORDS = 1;
     uint16 private constant REQUEST_CONFIRMATIONS = 3;
 
+    /* Lottery Variables */
+    address payable private s_recentWinner;
+
 
     /* Events */
     event RaffleEntry(address indexed player);
     event RequestedRaffleWinner(uint indexed requestId);
+    event WinnerPicked(address indexed winner);
     
 
     constructor(address vrfCoordinatorV2, uint entranceFee, bytes32 gasLane, uint64 subscriptionId, uint32 callbackGasLimit) VRFConsumerBaseV2(vrfCoordinatorV2) {
@@ -70,8 +77,17 @@ contract Raffle is VRFConsumerBaseV2{
         emit RequestedRaffleWinner(requestId);
      }
 
-     function fulfillRandomWords(uint requestId, uint[] memory randomWords) internal override{
+     function fulfillRandomWords(uint /*requestId*/, uint[] memory randomWords) internal override{
+        uint indexOfTheWinner = randomWords[0] % s_players.length;
+        address payable recentWinner = s_players[indexOfTheWinner];
 
+        s_recentWinner = recentWinner;
+        
+        //now since we got recent winner, let's transfer them the money
+        (bool success, ) = recentWinner.call{value: address(this).balance}("");
+        if(!success) revert RAFFLE__TransferFailed();
+
+        emit WinnerPicked(recentWinner);
      }
 
 function getEntranceFee() public view returns(uint){
@@ -82,4 +98,8 @@ function getPlayers(uint index) public view returns(address) {
 return s_players[index];
 }
 
- }
+function getRecentWinner() public view returns(address) {
+    return s_recentWinner;
+}
+
+}
