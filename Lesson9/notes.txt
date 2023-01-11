@@ -76,3 +76,14 @@ and yea don't forget to yarn add --dev @chainlink/contracts.
 
 
 HARDHAT SHORTHAND
+A global npm package that installs a globally accessible binary called 'hh' that runs the project's locally installed hardhat and supports shell completion for tasks
+
+yarn add global hardhat-shorthand
+
+and now instead of 'yarn hardhat' you can use 'hh'.
+eg - hh compile
+
+
+
+IMPLEMENTING CHAINLINK VRF - The Request
+
