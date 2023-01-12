@@ -212,3 +212,11 @@ and write it:
 
 
 MOCK CHAINLINK VRF COORDINATOR 
+now made a VRFCoordinatorV2Mock.sol in contracts/test, imported from chainlink github.
+
+now while deploying this contract in mocks script, arguments needed can be known by going to that V2 interface contract and seeing what parameters the constructor there takes.
+there are 2 parameters - base fee and gas price link
+base fee is that coordinator price fee, meaning we have to pay this base fee for every transaction.
+
+*the reason vrf requests has a base fee while price feeds didn't have is because price feeds are sponsered by a group of protocols.
+*chainlink nodes actually call the performUpKeep fnc and fulfillRandomWords fnc, so they pay the gas fee on the blockchain for which we beforehand pay the chainlink nodes in LINK, that they use for blockchain transaction, now gasPriceLink is the amount we keep as the extra safety price for whenever gas price increases/fluctuates, so that our chainlink nodes never go bankrupt.
