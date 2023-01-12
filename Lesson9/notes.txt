@@ -220,3 +220,32 @@ base fee is that coordinator price fee, meaning we have to pay this base fee for
 
 *the reason vrf requests has a base fee while price feeds didn't have is because price feeds are sponsered by a group of protocols.
 *chainlink nodes actually call the performUpKeep fnc and fulfillRandomWords fnc, so they pay the gas fee on the blockchain for which we beforehand pay the chainlink nodes in LINK, that they use for blockchain transaction, now gasPriceLink is the amount we keep as the extra safety price for whenever gas price increases/fluctuates, so that our chainlink nodes never go bankrupt.
+
+so yea get those base fee and gas price link and pass in as args.
+
+
+
+DEPLOYING RAFFLE.SOL CONTINUED
+now, lets get all those arguements needed in our constructor function of the raffle contract.
+
+1. V2 contract address - if condition that if on localnode, then get that mock contract, else get whatever network we are on.
+
+2. entrance fee - lets define that in helper-hardhat-config - different for different chains
+  then get that in our deploy script like:
+    const entranceFee = networkConfig[chainId]["entranceFee"]
+
+3. gasLane - grab them from the docs and add in helper-hardhat-config - doesn't really matter for our hardhat as we are mocking it, so write anything there - ez then pass to args 
+
+4. subscriptionId - go to vrf.chain.link, for testnet we can get subscription id easily here and for that do the same, get from docs to helper-hardhat-config, BUT for hardhat node, we are going to learn to 100% programmatically create a subscription id and fund that subscription id, without the use of UI:
+
+    in deploy-raffle script, inside the if(developmentChains...){
+        create a subscription and that subscription emits an event which contains the subscriptionId, which we can get from there (see the code)
+
+        now to fund the subscription, just use the function and our hardhat node doesn't need any LINK token like for testnet it does, so give anything
+    }
+
+5. callbackGasLimit - do same as gasLane
+
+6. interval - same as gasLane, set as 30 seconds for both
+
+Now what's left is that programmatic verification piece, so make a folder - utils/verify.js and copy from our fundME contract - then import it in our deploy script and use.
