@@ -160,3 +160,31 @@ function getNumWords() public view returns(uint){
     return NUM_WORDS;
 }
 here we are returning NUM_WORDS which is a bytecode, a constant number and we are not returning it from storage, so we can make our function pure.
+
+
+
+DEPLOYING RAFFLE.SOL
+here, always check the contructor first, here we have one contract address for V2, which is outside our contract and we need to deploy a mock for that.
+
+lets make a deploy folder
+and lets start working with our raffle.sol's deployement
+
+copy config boilerplate and .env files 
+now done with the basic boilerplate:
+
+    const { network } = require("hardhat")
+
+    //module.exports = async({getNamedAccounts, deployments}) .....
+    module.exports = async function ({ getNamedAccounts, deployments }) {
+        const { deploy, log } = deployments
+        const { deployer } = getNamedAccounts()
+
+        const raffle = await deploy("Raffle", {
+            from: deployer,
+            args: [],
+            log: true,
+            waitConfirmations: network.config.blockConfirmations || 1,
+        })
+    }
+
+Now lets deal with the arguments

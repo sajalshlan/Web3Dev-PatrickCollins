@@ -176,4 +176,8 @@ function getNumberOfPlayers() public view returns(uint){
 function getLatestTimeStamp() public view returns(uint){
     return s_lastTimeStamp;
 }
+
+function getNumberOfRequestConfirmations() public pure returns(uint){
+    return REQUEST_CONFIRMATIONS;
+}
 }
