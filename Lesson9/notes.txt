@@ -153,3 +153,10 @@ also, don't forget to reset s_lastTimeStamp
 
 
 CODE CLEANUP
+adding NATSPEC
+
+also, while:
+function getNumWords() public view returns(uint){
+    return NUM_WORDS;
+}
+here we are returning NUM_WORDS which is a bytecode, a constant number and we are not returning it from storage, so we can make our function pure.
