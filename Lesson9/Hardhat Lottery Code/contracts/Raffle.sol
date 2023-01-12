@@ -18,7 +18,7 @@ import "@chainlink/contracts/src/v0.8/AutomationCompatible.sol";
 error RAFFLE__NotEnoughEthEntered();
 error RAFFLE__TransferFailed();
 error RAFFLE_NotOpen();
-
+error RAFFLE__UpKeepNotNeeded(address currentBalance, uint numberOfPlayers, uint raffleState);
 
 contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
 
@@ -41,6 +41,8 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     /* Lottery Variables */
     address payable private s_recentWinner;
     RaffleState private s_raffleState;
+    uint private s_lastTimeStamp;
+    uint private immutable i_interval;
 
 
     /* Events */
@@ -49,13 +51,15 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
     event WinnerPicked(address indexed winner);
     
 
-    constructor(address vrfCoordinatorV2, uint entranceFee, bytes32 gasLane, uint64 subscriptionId, uint32 callbackGasLimit) VRFConsumerBaseV2(vrfCoordinatorV2) {
+    constructor(address vrfCoordinatorV2, uint entranceFee, bytes32 gasLane, uint64 subscriptionId, uint32 callbackGasLimit, uint interval) VRFConsumerBaseV2(vrfCoordinatorV2) {
         i_vrfCoordinator = VRFCoordinatorV2Interface(vrfCoordinatorV2);
         i_entranceFee = entranceFee;
         i_gasLane = gasLane;
         i_subscriptionId = subscriptionId;
         i_callbackGasLimit = callbackGasLimit;
         s_raffleState = RaffleState.OPEN;
+        s_lastTimeStamp = block.timestamp;
+        i_interval = interval;
     }
 
     //making enterRaffle payable as people will sending eth, hence we accepting msg.value
@@ -86,14 +90,24 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
      * 4. lottery should be in an 'open' state, meaning when the random number is returning, it should not allow any new players to join in
      */
 
-    function checkUpkeep(bytes calldata /* checkData */) external override returns(bool upkeepNeeded, bytes memory /* performData */) {
-
+    function checkUpkeep(bytes calldata /* checkData */) public override returns(bool upkeepNeeded, bytes memory /* performData */) {
+        bool isOpen = (RaffleState.OPEN == s_raffleState);
+        bool timePassed = ((block.timestamp - s_lastTimeStamp) > i_interval);
+        bool hasPlayers = (s_players.length > 0);
+        bool hasBalance = (address(this).balance > 0);
+        upkeepNeeded = (isOpen && timePassed && hasPlayers && hasBalance);
     }
 
-     function requestRandomWinner() external {
+     function performUpkeep(bool calldata /* performData */) external override returns() {
         //request a random number
         //do something with it
         //make it a 2 transaction process, harder for people to manipulate then
+
+        (bool upKeepNeeded, ) = checkUpkeep("");
+        if(!upKeepNeeded){
+            revert RAFFLE__UpKeepNotNeeded(address(this).balance, s_players.length, uint(s_raffleState))
+        }
+
         s_raffleState = RaffleState.CALCULATING;
         uint requestId = i_vrfCoordinator.requestRandomWords(
             i_gasLane, //gas lanes - a has lane key hash value, max price you are willing to pay for a req
@@ -111,6 +125,11 @@ contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface {
 
         s_recentWinner = recentWinner;
         s_raffleState = RaffleState.OPEN;
+
+        //resetting the players array
+        s_players = new address payable[](0);
+
+        s_lastTimeStamp = block.timestamp;
         //now since we got recent winner, let's transfer them the money
         (bool success, ) = recentWinner.call{value: address(this).balance}("");
         if(!success) revert RAFFLE__TransferFailed();

@@ -141,3 +141,15 @@ then define a variable of type RaffleState and pass RaffleState.OPEN with the co
 
 now create if condition in enterRaffle function with this new state variable that if lottery is OPEN, then only you can enter, and revert with a new custom error.
 similarly in requestRandomWinner function, switch the state to calculating so that other players can't enter
+
+
+
+IMPLEMENTING CHAINLINK KEEPERS CONTINUED
+write all those booleans in checkupKeep, and then now for performUpKeep -> change the requestRandomWinner to performUpKeep:
+so, call performUpKeep only when checkUpKeep returns true, so change visibility of checkupKeep from external to public
+
+also, don't forget to reset s_lastTimeStamp
+
+
+
+CODE CLEANUP
