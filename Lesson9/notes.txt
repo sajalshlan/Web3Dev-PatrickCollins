@@ -188,3 +188,27 @@ now done with the basic boilerplate:
     }
 
 Now lets deal with the arguments
+Now first arg is that vrfV2Coordinator interface, now just like our fundME contract, we will use mocks if we are on local chain and actual contract addresses if we are on test net.
+
+so making that helper-hardhat-config that will contain all the different contract address and other related things
+
+and again for the mock contract, lets create - '00-deploy-mocks.js' 
+and write it:
+
+    import { network } from "hardhat"
+    import { developmentChains } from "../helper-hardhat-config"
+
+    module.exports = async function ({ getNamedAccounts, deployments }) {
+        const { deploy, log } = deployments
+        const { deployer } = await getNamedAccounts()
+        const chainId = network.config.chainId
+
+        if (developmentChains.includes(network.name)) {
+            log("Local network detected, deploying mocks...")
+            //deploy a mock vrf coordinator
+        }
+    }
+
+
+
+MOCK CHAINLINK VRF COORDINATOR 
