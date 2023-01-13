@@ -292,3 +292,15 @@ eg in the above lines, we first did all the steps to change the raffle state to 
 *was solving a bug and got to add this line in deploy-raffle, but i dont understand why and what does this mean:
     await VRFCoordinatorV2Mock.addConsumer(subscriptionId, raffle.address)
 
+KEEP CHECKING FOR COVERAGE - yarn hardhat coverage to see how many lines of the contract covered in tests
+
+
+
+UNIT TEST CONTINUED
+writing unit tests for checkUpkeep function
+
+**CALLSTATIC:
+In Solidity, the call and callcode functions are used to call other contract's functions. However, these functions can change the state of the contract, which is not desirable in testing scenarios. To overcome this problem, the Solidity test framework provides the callstatic function that can be used to call other contract's functions without changing the state of the contract. The callstatic function returns the result of the called function, but does not modify the state of the contract. This allows for more predictable test results, and makes it easier to test the functionality of contracts in isolation.
+
+so will use callstatic while calling checkUpkeep in our tests.
+
