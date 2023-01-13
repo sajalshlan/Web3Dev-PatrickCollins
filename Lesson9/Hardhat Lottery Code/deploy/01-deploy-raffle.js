@@ -1,12 +1,12 @@
 const { network, ethers } = require("hardhat")
 const { developmentChains, networkConfig } = require("../helper-hardhat-config")
 const { verify } = require("../utils/verify")
-require("dotenv").config
+require("dotenv").config()
 
 //module.exports = async({getNamedAccounts, deployments}) .....
 module.exports = async function ({ getNamedAccounts, deployments }) {
     const { deploy, log } = deployments
-    const { deployer } = getNamedAccounts()
+    const { deployer } = await getNamedAccounts()
     const chainId = network.config.chainId
     const VRF_SUB_FUND_AMOUNT = ethers.utils.parseEther("2")
     let VRFCoordinatorV2address, subscriptionId
@@ -47,7 +47,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         from: deployer,
         args: args,
         log: true,
-        waitConfirmations: network.config.blockConfirmations || 1,
+        waitConfirmation: network.config.blockConfirmations || 1,
     })
 
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {

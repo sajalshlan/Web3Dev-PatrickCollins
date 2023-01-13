@@ -89,48 +89,6 @@
         "VRFConsumerBaseV2"
       ]
     },
-    "/home/shlan/Code/Blockchain/Full Stack Web3 Development/Web3Dev-PatrickCollins/Lesson9/Hardhat Lottery Code/node_modules/@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol": {
-      "lastModificationDate": 1673422387866,
-      "contentHash": "8c9ed3426b676f67ee200a2bec96e224",
-      "sourceName": "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "devdoc",
-                "userdoc",
-                "storageLayout",
-                "evm.gasEstimates"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          },
-          "metadata": {
-            "useLiteralContent": true
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.0"
-      ],
-      "artifacts": [
-        "VRFCoordinatorV2Interface"
-      ]
-    },
     "/home/shlan/Code/Blockchain/Full Stack Web3 Development/Web3Dev-PatrickCollins/Lesson9/Hardhat Lottery Code/node_modules/@chainlink/contracts/src/v0.8/AutomationCompatible.sol": {
       "lastModificationDate": 1673422387798,
       "contentHash": "c962c53a75d722542c83859d848edd5b",
@@ -174,6 +132,48 @@
       ],
       "artifacts": [
         "AutomationCompatible"
+      ]
+    },
+    "/home/shlan/Code/Blockchain/Full Stack Web3 Development/Web3Dev-PatrickCollins/Lesson9/Hardhat Lottery Code/node_modules/@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol": {
+      "lastModificationDate": 1673422387866,
+      "contentHash": "8c9ed3426b676f67ee200a2bec96e224",
+      "sourceName": "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata",
+                "devdoc",
+                "userdoc",
+                "storageLayout",
+                "evm.gasEstimates"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          },
+          "metadata": {
+            "useLiteralContent": true
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "VRFCoordinatorV2Interface"
       ]
     },
     "/home/shlan/Code/Blockchain/Full Stack Web3 Development/Web3Dev-PatrickCollins/Lesson9/Hardhat Lottery Code/node_modules/@chainlink/contracts/src/v0.8/AutomationBase.sol": {

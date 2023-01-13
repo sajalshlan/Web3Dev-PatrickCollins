@@ -114,7 +114,7 @@ cool, now a warning in fulfillRandomWinner function - that we are taking the req
 
 INTRODUCTION TO CHAINLINK KEEPERS
 now lets add keepers so that it automatically picks up the winner after some time and we don't have to interact with it
-There are 2 steps to building a chainlink keeper upkept smart contract:
+There are 2 steps to building a chainlink keeper upkeep smart contract:
 1. write a smart contract that's compatible using checkUpKeep and performUpKeep method
 2. register the smart contract with chainlink keepers network
 
@@ -145,7 +145,7 @@ similarly in requestRandomWinner function, switch the state to calculating so th
 
 
 IMPLEMENTING CHAINLINK KEEPERS CONTINUED
-write all those booleans in checkupKeep, and then now for performUpKeep -> change the requestRandomWinner to performUpKeep:
+write all those booleans in checkUpKeep, and then now for performUpKeep -> change the requestRandomWinner to performUpKeep:
 so, call performUpKeep only when checkUpKeep returns true, so change visibility of checkupKeep from external to public
 
 also, don't forget to reset s_lastTimeStamp
