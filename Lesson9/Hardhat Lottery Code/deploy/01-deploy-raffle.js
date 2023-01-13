@@ -50,6 +50,9 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         waitConfirmation: network.config.blockConfirmations || 1,
     })
 
+    log("Raffle deployed")
+    log("----------------------------------------")
+
     if (!developmentChains.includes(network.name) && process.env.ETHERSCAN_API_KEY) {
         await verify(raffle.address, args)
     }

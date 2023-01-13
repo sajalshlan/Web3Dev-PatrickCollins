@@ -249,3 +249,7 @@ now, lets get all those arguements needed in our constructor function of the raf
 6. interval - same as gasLane, set as 30 seconds for both
 
 Now what's left is that programmatic verification piece, so make a folder - utils/verify.js and copy from our fundME contract - then import it in our deploy script and use.
+
+
+
+UNIT TESTS
