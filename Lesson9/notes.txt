@@ -266,3 +266,29 @@ expect(raffle.enterRaffle({value: raffleEntranceFee})).to.emit(raffle, "RaffleEn
 
 
 RAFFLE UNIT TESTS CONTINUED
+make interval a global variable and initialize it in before each
+
+now for checking raffleState, we need to wait for the interval, to get to calculating from Open, but we can't wait 30 seconds for this test, and some contracts may have an interval of 10 days, then what?!
+that's why we use 2 methods provided by hardhat, increasing time and mining a block - 
+
+     await network.provider.send("evm_increaseTime", [interval.toNumber() + 1]) 
+     This method is used to increase the time on the Ethereum virtual machine (EVM) by the specified interval + 1.
+
+    await network.provider.send("evm_mine", [])
+
+we are basically checking every condition of checkUpKeep so that we can return true for performUpKeep and then we pretend to be a chainlink keeper and run performUpKeep in our test
+after calling the performUpkeep function, we've set the raffle state to Calculating 
+
+now add that expect condition that raffle: 
+
+    await expect(raffle.enterRaffle({ value: raffleEntranceFee })).to.be.revertedWith(
+                      "RAFFLE__NotOpen"
+                  )
+
+got it -> means jo condition chahiye hoti hai, uska opposite pehle kardo, then usko pass karao and expect it to revert, if it performs as of our expectations, i.e, it reverts, then it means test passed and function is good.
+eg in the above lines, we first did all the steps to change the raffle state to 'calculating', then called the enterRaffle function and expected it to revert as raffle state should've been 'open'.
+
+
+*was solving a bug and got to add this line in deploy-raffle, but i dont understand why and what does this mean:
+    await VRFCoordinatorV2Mock.addConsumer(subscriptionId, raffle.address)
+

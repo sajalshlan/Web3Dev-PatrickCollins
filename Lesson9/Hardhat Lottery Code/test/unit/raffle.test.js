@@ -5,7 +5,7 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
 !developmentChains.includes(network.name)
     ? describe.skip
     : describe("Raffle Unit Tests", async function () {
-          let raffle, VRFCoordinatorV2Mock, deployer
+          let raffle, VRFCoordinatorV2Mock, deployer, interval
           const chainId = network.config.chainId
 
           beforeEach(async function () {
@@ -18,6 +18,7 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
               raffle = await ethers.getContract("Raffle", deployer)
               VRFCoordinatorV2Mock = await ethers.getContract("VRFCoordinatorV2Mock", deployer)
               raffleEntranceFee = await raffle.getEntranceFee()
+              interval = await raffle.getInterval()
           })
 
           describe("constructor", async function () {
@@ -25,7 +26,6 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
                   //ideally we make our tests have just one assert per it
 
                   const raffleState = await raffle.getRaffleState()
-                  const interval = await raffle.getInterval()
 
                   assert.equal(raffleState.toString(), "0")
                   assert.equal(interval.toString(), networkConfig[chainId]["interval"])
@@ -49,6 +49,21 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
                   await expect(raffle.enterRaffle({ value: raffleEntranceFee })).to.emit(
                       raffle,
                       "RaffleEntry"
+                  )
+              })
+
+              it("doesnt allow entrance when raffle is calculating", async function () {
+                  await raffle.enterRaffle({ value: raffleEntranceFee })
+                  await network.provider.send("evm_increaseTime", [interval.toNumber() + 1])
+                  await network.provider.send("evm_mine", [])
+
+                  //pretending to be a chainlink keeper
+                  //calling the performUpKeep function
+                  await raffle.performUpkeep([])
+
+                  //expect condition
+                  await expect(raffle.enterRaffle({ value: raffleEntranceFee })).to.be.revertedWith(
+                      "RAFFLE__NotOpen"
                   )
               })
           })
