@@ -257,3 +257,12 @@ make a new folder test and inside that unit/raffle.test.js
 writing good tests and getting this muscle memory down will make you a fantastic engineer.
 
 at first that skip case, that these unit tests for local hardhat node
+
+
+
+TESTING EVENTS & CHAI MATCHERS
+expect(raffle.enterRaffle({value: raffleEntranceFee})).to.emit(raffle, "RaffleEntry")
+
+
+
+RAFFLE UNIT TESTS CONTINUED
