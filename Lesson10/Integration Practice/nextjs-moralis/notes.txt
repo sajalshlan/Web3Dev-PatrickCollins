@@ -1,0 +1,3 @@
+yarn add moralis react-moralis
+
+initializeOnMount = {false} means hey we don't want to host our app to a server right now
