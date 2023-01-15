@@ -1,3 +1,13 @@
 yarn add moralis react-moralis
 
 initializeOnMount = {false} means hey we don't want to host our app to a server right now
+
+you don't even need to create a connect function, just use { enableWeb3 } from useMoralis() hook.
+
+same with the execute function:
+get the abi in a constants folder
+and use { runContractFunction } = useWeb3Contract({
+    pass in the parameters,abi, contractAddress and everything
+})
+
+//btw we got useWeb3Contract from useMoralis() hook only
