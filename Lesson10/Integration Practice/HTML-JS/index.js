@@ -1,6 +1,7 @@
 const { ethers } = require("ethers");
 
 const connectBtn = document.getElementById("connectBtn");
+const executeBtn = document.getElementById("executeBtn");
 
 async function connect() {
   if (typeof window.ethereum != "undefined") {
@@ -118,7 +119,7 @@ async function execute() {
     const signer = provider.getSigner();
 
     //now an instance of that contract with contractAddress, abi to get the functions to interact with and signer, i.e, the user's wallet/account with which he/she will connect and execute transactions
-    const contract = await ethers.Contract(contractAddress, abi, signer);
+    const contract = new ethers.Contract(contractAddress, abi, signer);
 
     //call a function
     await contract.store(24);
