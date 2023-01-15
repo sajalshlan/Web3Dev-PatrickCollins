@@ -1,0 +1,8 @@
+first do yarn create next-app .
+then `yarn add web3-react/core` and `yarn add ethers`
+
+now if you see in web3-react's docs, it gives us a provider <Web3ReactProvider> which wraps the app component, wrap all your code, in this way all our apps/components know about the state of the providers - eg if you are connected to metamask or not, etc
+
+now look at the app.js page, even i dont understand why we did that
+
+web3-react comes with a lot of connectors - like activate - check index.js
