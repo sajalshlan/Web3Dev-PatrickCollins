@@ -1,1 +1,27 @@
 //FINALLY FRONTEND HUAHAHAH
+
+FIRST OPTIONAL SECTION: HOW TO CONNECT YOUR SMART CONTRACTS TO METAMASK - FRONTEND INTERGRATION
+Basically these wallets in browser extension provides our global window object with a etherum (or solana) object, thru which we can connect to the blockchain node.
+try out: window.etherum in console log of a browser.
+Under the hood, these wallets have blockchain node connected to them and in order to interact with a blockchain we always need a node - like in backend, we use third party applications like Alchemy, Infura to rent out - HOW, read this: 
+
+        `INFURA allows developers to access Ethereum and IPFS nodes through a simple API, rather than having to run their own node. By using INFURA, developers can connect to the Ethereum network without the need to set up and maintain their own node. This can be a significant cost-saving and time-saving measure, as running a node can be expensive and requires a certain level of technical expertise to set up and maintain.
+
+        Instead of running their own node, developers can use INFURA's API to access the Ethereum network and perform various actions such as sending transactions, interacting with smart contracts, and querying the blockchain. This is similar to renting a node, as developers are able to access the resources of the node without having to own and maintain it themselves.
+
+        Additionally, INFURA also provides developers with the ability to scale their dApps by providing access to a large number of nodes, which can improve the performance and reliability of their dApps. And also by providing access to a large number of nodes, developers can reduce the risk of downtime or network congestion, which can be a common issue when running a single node.
+
+        In summary, INFURA allows developers to "rent" a node in the sense that they can access the resources of the node without having to set up and maintain it themselves, which can save them time and money while also improving the performance and reliability of their dApps.`
+
+Now that all is done in backend, but in the frontend we can simply use metamask wallet or phantom or any wallet - they all do the same thing, they expose some URL, they expose some node - they give us that provider
+if you expand and see metamask, all have infura rpc, but these wallets give us a nice way of sticking these rpc to our browser
+
+now let's do it, 6 ways to do it:
+1. HTML/JS
+2. NextJS + React and "raw" ethers
+3. NextJS + "web3-react"
+4. NextJS + "react-moralis"
+5. NextJS + "web3Modal"
+6. NextJS + "useDapp"
+
+NOTES in their respective folders

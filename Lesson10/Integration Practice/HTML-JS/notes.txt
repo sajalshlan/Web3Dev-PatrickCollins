@@ -1,0 +1,34 @@
+what is a bundler? what is a webpack? explain in layman terms:
+
+
+        `A bundler is a tool that takes all of your JavaScript code (and other assets such as CSS and images) and combines it into a single file (or a few files) that can be loaded by the browser. This is useful because it allows you to organize your code into smaller modules, which makes it easier to maintain and share across different projects.
+
+        Webpack is one of the most popular JavaScript bundlers. It is a powerful and flexible tool that can be configured to perform a variety of tasks, such as transpiling code to be compatible with older browsers, optimizing code for better performance, and handling dependencies between modules.
+
+        Webpack takes your code, looks at the import and export statements, and creates a dependency graph, where it knows which files depend on which other files. And then it packs all the files and the dependencies into one or more bundles that you can include in your HTML files.
+
+        Think of it like a big bag where you put all your different legos (javascript files), and webpack makes sure that all the legos that belong together are in the same bag, so when you want to play with them, you don't have to search for all the legos in different boxes.`
+
+Browserify and Webpack are both JavaScript bundlers
+
+        If you're starting a new project and you want to use modules in the browser, and you don't want to spend a lot of time configuring your tooling, then Browserify might be a good choice. On the other hand, if you're working on a more complex project and you want more control over how your code is processed and bundled, then Webpack might be a better fit.
+
+
+what is the meaning of transpiling the code:
+
+        Transpiling is the process of converting code written in one programming language into another programming language. In the context of JavaScript, transpiling typically refers to the process of converting modern JavaScript code (such as code written using the latest ECMAScript features) into an older version of JavaScript that is more widely supported by browsers.
+
+        The main reason to transpile code is to make it compatible with older browsers and environments that do not fully support the latest versions of JavaScript. Because new versions of JavaScript introduce new features and syntax, older browsers may not be able to understand or execute the code correctly. Transpiling allows developers to write code using the latest features, while still ensuring that it will work in older browsers.
+
+        Transpiling is typically done using a tool called a transpiler, such as Babel. A transpiler reads the code written in the newer version of JavaScript, and then generates equivalent code that can be understood by older browsers. The generated code may not be as optimized as the original code, but it will work with older browsers.
+
+        It's also worth noting that transpiling can be used for other purposes, for example, converting ECMAScript to another languages like Typescript (superset of javascript) or Dart.
+
+*
+so we used Browserify to bundle these, idk why not webpack rn, but we'll learn
+
+also yarn add ethers
+
+NOW wrote the function connect to connect to metamask/ethereum based wallet, now will write execute function which will help us connect with a sample storage contract and interact with it from the browser.
+for that, get that favoriteNumber contract from github(i already had in Lesson6, so deployed it from there), run yarn hardhat node, now the local blockchain is running, import one of the account to metamask (reset if needed), get the abi, contractaddress, rpc url and a signer(wallet address) and then see the execute function
+
