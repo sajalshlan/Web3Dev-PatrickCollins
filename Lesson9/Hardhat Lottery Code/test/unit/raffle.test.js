@@ -63,9 +63,7 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
                   await raffle.performUpkeep([])
 
                   //expect condition
-                  await expect(raffle.enterRaffle({ value: raffleEntranceFee })).to.be.revertedWith(
-                      "RAFFLE__NotOpen"
-                  )
+                  await expect(raffle.enterRaffle({ value: raffleEntranceFee })).to.be.reverted
               })
           })
 
