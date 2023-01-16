@@ -9,7 +9,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <Web3ReactProvider getLibrary={getLibrary}>
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
     </Web3ReactProvider>
   );
 }

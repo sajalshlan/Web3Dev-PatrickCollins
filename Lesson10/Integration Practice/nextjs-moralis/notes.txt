@@ -11,3 +11,5 @@ and use { runContractFunction } = useWeb3Contract({
 })
 
 //btw we got useWeb3Contract from useMoralis() hook only
+
+look into the ethereum-boilerplate on github - have plugins for all those different injectors 
