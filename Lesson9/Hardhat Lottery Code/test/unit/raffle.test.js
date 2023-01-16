@@ -143,4 +143,78 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
                   assert.equal(raffleState.toString(), "1")
               })
           })
+
+          describe("fulfillRandomWords", function () {
+              beforeEach(async function () {
+                  await raffle.enterRaffle({ value: raffleEntranceFee })
+                  await network.provider.send("evm_increaseTime", [interval.toNumber() + 1])
+                  await network.provider.send("evm_mine", [])
+              })
+              it("can only be called after performUpkeep", async function () {
+                  await expect(
+                      VRFCoordinatorV2Mock.fulfillRandomWords(0, raffle.address)
+                  ).to.be.revertedWith("nonexistent request")
+              })
+
+              //NOW A WAYYYY TOO BIG TEST
+              it("picks a winner, sends the money, resets the lottery", async function () {
+                  //first, getting more players in the raffle
+                  const additionalEntrants = 3
+                  let startingIndex = 1 //deployer=0
+
+                  //get those accounts from our localhost
+                  const accounts = await ethers.getSigners()
+
+                  //making those entrants enter the raffle
+                  for (startingIndex; startingIndex <= additionalEntrants; startingIndex++) {
+                      const connectedAccounts = raffle.connect(accounts[startingIndex])
+                      await connectedAccounts.enterRaffle({ value: raffleEntranceFee })
+                  }
+                  const startingTimeStamp = await raffle.getLatestTimeStamp()
+
+                  //performUpkeep (mock being chainlink keepers)
+                  //fulfillRandomWords (mock being chainlink vrf)
+                  //we will have to wait for fulfillRandomWords to be called when w/ test nets or mainnet
+
+                  await new Promise(async (resolve, reject) => {
+                      raffle.once("WinnerPicked", async () => {
+                          console.log("Found the event")
+                          try {
+                              const recentWinner = await raffle.getRecentWinner()
+                              const raffleState = await raffle.getRaffleState()
+                              const endingTimeStamp = await raffle.getLatestTimeStamp()
+                              const numberOfPlayers = await raffle.getNumberOfPlayers()
+
+                              //checking for the recent winner
+                              console.log(recentWinner)
+                              console.log(accounts[0].address)
+                              console.log(accounts[1].address)
+                              console.log(accounts[2].address)
+                              console.log(accounts[3].address)
+
+                              //assert
+                              assert.equal(numberOfPlayers.toString(), "0")
+                              assert.equal(raffleState.toString(), "0")
+                              assert(endingTimeStamp > startingTimeStamp)
+                          } catch (e) {
+                              console.log(e)
+                          }
+                          resolve()
+                      })
+
+                      //remaining code below to fire up the event so that listener can pick it up
+                      //plus add mocha: timeout to hardhat config, as if in this time interval, our promise doesnt gets picked up, this will be considered a failure and this test will fail
+
+                      //now outside .once but inside the promise, calling the performUpkeep and fulFillRandomWords function
+                      const tx = await raffle.performUpkeep([])
+                      const txR = await tx.wait(1)
+                      await VRFCoordinatorV2Mock.fulfillRandomWords(
+                          txR.events[1].args.requestId,
+                          raffle.address
+                      )
+
+                      //now this fulfillRandomWords will emit the WinnerPicked event, which our promise will listen to
+                  })
+              })
+          })
       })
