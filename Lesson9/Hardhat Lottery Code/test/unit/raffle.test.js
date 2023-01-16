@@ -1,4 +1,5 @@
 const { assert, expect } = require("chai")
+const { FunctionFragment } = require("ethers/lib/utils")
 const { network, deployments, getNamedAccounts, ethers } = require("hardhat")
 const { developmentChains, networkConfig } = require("../../helper-hardhat-config")
 
@@ -103,6 +104,43 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
 
                   const { upkeepNeeded } = await raffle.callStatic.checkUpkeep([])
                   assert(!upkeepNeeded)
+              })
+          })
+
+          describe("performUpkeep", function () {
+              it("it can only run if checkUpkeep is true", async function () {
+                  await raffle.enterRaffle({ value: raffleEntranceFee })
+                  await network.provider.send("evm_increaseTime", [interval.toNumber() + 1])
+                  await network.provider.send("evm_mine", [])
+
+                  //i dont get it here, if performUpkeep is returning something true, it means checkUpkeep was true as performUpkeep got executed, so it should be a test for checkUpkeep right, not performUpkeep
+
+                  const tx = await raffle.performUpkeep([])
+                  assert(tx)
+              })
+
+              it("reverts if checkUpkeep is not true", async function () {
+                  await expect(raffle.performUpkeep([])).to.be.reverted
+              })
+
+              it("updates the raffle state, calls the vrfCoordinator and emits an event", async function () {
+                  await raffle.enterRaffle({ value: raffleEntranceFee })
+                  await network.provider.send("evm_increaseTime", [interval.toNumber() + 1])
+                  await network.provider.send("evm_mine", [])
+
+                  //calling the performUpkeep
+                  const txResponse = await raffle.performUpkeep([])
+                  const txReceipt = await txResponse.wait(1)
+
+                  //emitting the event
+                  const requestId = txReceipt.events[1].args.requestId
+
+                  //getting the raffle state
+                  const raffleState = await raffle.getRaffleState()
+
+                  //assert
+                  assert(requestId.toNumber() > 0)
+                  assert.equal(raffleState.toString(), "1")
               })
           })
       })

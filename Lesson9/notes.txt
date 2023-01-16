@@ -309,3 +309,4 @@ will continue from 16.00 for the next 30 min tomorrow, sunday, as kinda bored rn
 
 
 CONTINUING ON MONDAY - 16/1/23
+writing tests for remaining functions
