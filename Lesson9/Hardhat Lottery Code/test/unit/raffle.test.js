@@ -1,12 +1,11 @@
 const { assert, expect } = require("chai")
-const { FunctionFragment } = require("ethers/lib/utils")
 const { network, deployments, getNamedAccounts, ethers } = require("hardhat")
 const { developmentChains, networkConfig } = require("../../helper-hardhat-config")
 
 !developmentChains.includes(network.name)
     ? describe.skip
     : describe("Raffle Unit Tests", function () {
-          let raffle, VRFCoordinatorV2Mock, deployer, interval
+          let raffle, VRFCoordinatorV2Mock, deployer, interval, raffleEntranceFee
           const chainId = network.config.chainId
 
           beforeEach(async function () {
