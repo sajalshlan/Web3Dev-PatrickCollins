@@ -4,7 +4,7 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
 
 !developmentChains.includes(network.name)
     ? describe.skip
-    : describe("Raffle Unit Tests", async function () {
+    : describe("Raffle Unit Tests", function () {
           let raffle, VRFCoordinatorV2Mock, deployer, interval
           const chainId = network.config.chainId
 
@@ -21,7 +21,7 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
               interval = await raffle.getInterval()
           })
 
-          describe("constructor", async function () {
+          describe("constructor", function () {
               it("initializes the raffle contract correctly", async function () {
                   //ideally we make our tests have just one assert per it
 
@@ -32,7 +32,7 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
               })
           })
 
-          describe("enterRaffle", async function () {
+          describe("enterRaffle", function () {
               it("reverts when you don't pay enough", async function () {
                   await expect(raffle.enterRaffle()).to.be.revertedWith(
                       "RAFFLE__NotEnoughEthEntered"
@@ -68,7 +68,41 @@ const { developmentChains, networkConfig } = require("../../helper-hardhat-confi
               })
           })
 
-          describe("checkUpkeep", async function () {
-              it("", async function () {})
+          describe("checkUpkeep", function () {
+              it("returns false if people have not sent any ETH", async function () {
+                  //means make all the conditions of checkUpkeep true except the one sending the balance
+                  await network.provider.send("evm_increaseTime", [interval.toNumber() + 1])
+                  await network.provider.send("evm_mine", [])
+
+                  //not writing the remaining one condition, i.e, raffleState == OPEN, as in the beforeEach function, we deploy the raffle contract, and when deploying we pass in the args for constructor and there in raffleState is set to OPEN itself, so no need for us to set it open.
+                  const { upkeepNeeded } = await raffle.callStatic.checkUpkeep([])
+
+                  assert(!upkeepNeeded)
+              })
+
+              it("returns false if raffle is not open", async function () {
+                  //so we don't want raffle to be open, that means we need to it in performUpkeep, and for the rest - we gotta make them true
+                  await raffle.enterRaffle({ value: raffleEntranceFee })
+                  await network.provider.send("evm_increaseTime", [interval.toNumber() + 1])
+                  await network.provider.send("evm_mine", [])
+
+                  await raffle.performUpkeep([])
+                  const raffleState = await raffle.getRaffleState()
+
+                  const { upkeepNeeded } = await raffle.callStatic.checkUpkeep([])
+
+                  //assert
+                  assert.equal(raffleState.toString(), "1")
+                  assert.equal(upkeepNeeded, false)
+              })
+
+              it("returns false if enough time hasn't passed", async function () {
+                  await raffle.enterRaffle({ value: raffleEntranceFee })
+                  await network.provider.send("evm_increaseTime", [interval.toNumber() - 10])
+                  await network.provider.send("evm_mine", [])
+
+                  const { upkeepNeeded } = await raffle.callStatic.checkUpkeep([])
+                  assert(!upkeepNeeded)
+              })
           })
       })
