@@ -1,10 +1,10 @@
-import { abi, contractAddresses } from "@/constants";
+import { abi, contractAddresses } from "../constants";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { useMoralis, useWeb3Contract, isWeb3Enabled } from "react-moralis";
 
 export const LotteryEntance = () => {
-  const { chainId: chainIdHex } = useMoralis();
+  const { isWeb3Enabled, chainId: chainIdHex } = useMoralis();
   const chainId = parseInt(chainIdHex);
   const [entranceFee, setEntranceFee] = useState("0");
 
@@ -16,7 +16,7 @@ export const LotteryEntance = () => {
     contractAddress: raffleAddress, //specify the chainId here
     functionName: "enterRaffle",
     params: {},
-    msgValue: "",
+    msgValue: entranceFee,
   });
 
   //getting the entrance fee from the contract using useWeb3Contract hook and useState hook to re-render it
@@ -33,8 +33,7 @@ export const LotteryEntance = () => {
       console.log("useeffect");
       async function updateUI() {
         const entranceFeeFromCall = (await getEntranceFee()).toString();
-        setEntranceFee(ethers.utils.formatUnits(entranceFeeFromCall, "ether"));
-        console.log(entranceFee);
+        setEntranceFee(entranceFeeFromCall);
       }
       updateUI();
     }
@@ -42,7 +41,22 @@ export const LotteryEntance = () => {
 
   return (
     <>
-      Hi! lottery ki mkc <div>Entrance Fee: {entranceFee} ETH</div>
+      Hi! lottery ki mkc{" "}
+      {raffleAddress ? (
+        <div>
+          <button
+            onClick={async () => {
+              await enterRaffle();
+            }}
+          >
+            Enter Raffle
+          </button>
+          <br />
+          Entrance Fee: {ethers.utils.formatUnits(entranceFee, "ether")} ETH
+        </div>
+      ) : (
+        <div>Raffle Address not detected</div>
+      )}
     </>
   );
 };
