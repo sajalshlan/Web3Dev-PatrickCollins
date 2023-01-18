@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^1.0.5",
+    "fs-extra": "^11.1.0",
     "global": "^4.4.0",
     "hardhat-shorthand": "^1.0.0"
   }
