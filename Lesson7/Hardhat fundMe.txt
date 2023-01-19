@@ -75,13 +75,13 @@ In short, mocking is creating objects that simulate the behaviour of real object
         // 137: {
         //     name: "polygon",
         //     ethUsdPriceFeed: "",
-        // },
+        // },   
         //31337
     }
 
     but what about our localhost? - we have priceFeedAddress for our testnets but we don't have a priceFeedAddress for our localhost/hardhat node - so we will mock a AggregatorV3Interface
 
-    if the contract doens't exist, we deploy a minimal version for our local testing
+    if the contract doesn't exist, we deploy a minimal version for our local testing
 
     use module.exports.tags = ["all","mocks"]    in the end.
 

@@ -39,4 +39,7 @@ module.exports = {
         apiKey: COINMARKET_API_KEY,
     },
     solidity: "0.8.17",
+    mocha: {
+        timeout: 200000,
+    },
 }

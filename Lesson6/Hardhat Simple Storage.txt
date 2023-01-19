@@ -216,4 +216,4 @@ it will make a coverage folder and a coverage.json file -> add it to .gitignore
 
 
 HARDHAT WAFFLE
- Waffle is a smart contract testing framework
+ Waffle is a smart contract testing frameworkIn summary, if you're starting a new project and you want to use modules in the browser, and you don't want to spend a lot of time configuring your tooling, then Browserify might be a good choice. On the other hand, if you're working on a more complex project and you want more control over how your code is processed and bundled, then Webpack might be a better fit.

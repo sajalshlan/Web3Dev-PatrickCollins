@@ -25,3 +25,135 @@ now let's do it, 6 ways to do it:
 6. NextJS + "useDapp"
 
 NOTES in their respective folders
+
+
+
+//its going to be fun!!!
+
+
+NEXTJS SETUP
+just `yarn create next-app .`
+and a general walkthru to all the folders
+
+
+MANUAL HEADER I
+just make a folder components/Header.js - export it and display it
+
+then do this, as we are connecting metamask with our frontend
+ - `yarn add moralis-v1 react-moralis`
+and notice we didnt do --dev here, ie we didnt install them as dev dependancies - coz we need react-moralis in the production build too, unlike prettier
+
+now all that moralis voodoo - cover app.js with <MoralisProvider></MoralisProvider>
+use enableWeb3 hook in your header.js
+
+
+
+REACT HOOKS
+We could've used simple variables - like doing connected = false to connected = true, but the functionality states gives us is that whenever a state is changed, it re-renders the page, and we want that!
+Hooks are a way to work with states, like here : const { enableWeb3 } = useMoralis(), enableWeb3 is a function that the useMoralis hook gives us
+also allows us to keep track of states between renders.
+
+
+
+MANUAL HEADER II
+Just made a connect button and used the fnc enableWeb3
+now get `account` function from useMoralis hook and make a terniary operator
+
+
+
+USE EFFECT HOOK
+takes a fnc as its first parameter and a dependancy array as the second parameter
+useEffect() will constantly run and see if ... whatever it is in the dependancy array has changed or not, if it changes, it is going to run the function(the first parameter)
+
+runs twice at the beginning because of strict mode
+
+and if you don't give any dependancy array, it will run everytime something re-renders
+blank dependancy array: run once in the start (twice in the strict mode)
+
+
+
+WEB3UIKIT
+super ez and useful ui kit, get ui components directly from there
+
+
+
+INTRO TO CALLING FUNCTION IN NEXTJS
+for our enter raffle button, making a new component lotteryenterance.js
+we need a function that will call the enter raffle function in our contract, we can either do the traditional way with js and raw ethers, but again it wont re-render stuff, so we'll use our fav Moralis here
+
+a ez pz hook called useWeb3Contract() can do everything here
+
+runContractFunction from useWeb3Contract is the one that executes function onclick, see this from the docs:
+
+        const ShowUniswapObserveValues = () => {
+        const { data, error, runContractFunction, isFetching, isLoading } =
+        useWeb3Contract({
+        abi: usdcEthPoolAbi,
+        contractAddress: usdcEthPoolAddress,
+        functionName: "observe",
+        params: {
+                secondsAgos: [0, 10],
+        },
+        });
+
+        return (
+        <div>
+        {error && <ErrorMessage error={error} />}
+        <button onClick={() => runContractFunction()} disabled={isFetching}>
+                Fetch data
+        </button>
+        {data && <pre>{JSON.stringify(data)}</pre>}
+        </div>
+        );
+        };
+
+        HEREBY we can see that runContractFunction can both send transactions and read the state
+
+and in our code, we just renamed runContractFunction to enterRaffle by doing this: 
+        const {runContractFunction: enterRaffle} = useWeb3Contract({
+                pass in the parameters;
+        })
+
+
+AUTOMATIC UI UPDATER
+what we can do is, create a update script in our backend, that will update if there's any change in our contractAddress, or any function or anything, and that change frontend can check and reflect (in a folder constants.js in the frontend) - completely automated
+
+wrote the update-fronted script in our hardhat lottery backend (lesson 9 in deploy folder)
+
+now, using the runContractFunction, giving in all the params, also the chain Id (it gives the hex version of our chainId) can be directly given as connectButton function in our header file passes what chainId we are connected to (and other info) to the Moralis provider
+
+                const { chainId: chainIdHex } = useMoralis();
+                this means pull out the chainId object and name it as chainIdHex
+
+
+
+RUNCONTRACTFUNCTION AND USESTATE
+basically, we are using Moralis sdk and hooks to make things ezpz, earlier we did all that sending transactions by getting an instance of the contract with raw ethers, moralis and other SDKs help us by doing all that just with the help of one or two hooks/functions.
+
+like here we used useWeb3Contract() hook to get an instance and call the function on the contract, similarly now lets get read the entrance fee from the contract and render it on the UI: check the code of LotteryEntance.js
+
+
+
+CALLING FUNCTIONS IN NEXTJS
+using the runContractFunction: enterRaffle now
+and rest, put a terniary condition in return() that if raffleAddress exists, then <div> button for enterRaffle and entranceFee displayed</div> else "no raffle address detected", thats it.
+
+
+
+USENOTIFICATION
+useNotification hook - we are going to use the library web3uikit
+
+so, a NotificationProvider inside the MoralisProvider but wrapping the <Component></Component>
+
+useNotification hook returns a dispatch, which will pop up.
+
+NOTE* add onError: (error) => console.log(error) to all your runContractFunction as even if they break, you won't know it!
+
+now, lets pass in the params onSuccess and onError to await enterRaffle()
+
+and then make the handleSuccess and handleNotification function (see the code)
+
+
+
+Reading and Displaying Contract Data
+get the numberOfPlayers and recentWinner here, fine i'll do it myself
