@@ -56,7 +56,7 @@ export const LotteryEntance = () => {
 
   //handlesuccess function and notificaton function
   const handleSuccess = async (tx) => {
-    tx.wait(1);
+    await tx.wait(1);
     handleNotification(tx);
     updateUI();
   };
