@@ -94,8 +94,9 @@ export const LotteryEntance = () => {
   return (
     <>
       {raffleAddress ? (
-        <div>
+        <div className="p-5">
           <button
+            className="bg-blue-500 hover:bg-blue-300 hover:text-pearl text-white rounded-xl mb-4 px-3 py-1"
             onClick={async () => {
               await enterRaffle({
                 onSuccess: handleSuccess,
@@ -104,14 +105,19 @@ export const LotteryEntance = () => {
             }}
             disabled={isFetching || isLoading}
           >
-            Enter Raffle
+            {isFetching || isLoading ? (
+              <div className="animate-spin spinner-border h-8 w-8 border-b-2 rounded-full"></div>
+            ) : (
+              <div>Enter Raffle</div>
+            )}
           </button>
-          <br />
-          Entrance Fee: {ethers.utils.formatUnits(entranceFee, "ether")} ETH
-          <br />
-          Number Of Players: {parseInt(numberOfPlayers)}
-          <br />
-          Recent Winner: {recentWinner}
+          <div className="mb-1 text-lg">
+            Entrance Fee: {ethers.utils.formatUnits(entranceFee, "ether")} ETH
+          </div>
+          <div className="mb-1 text-lg">
+            Number Of Players: {parseInt(numberOfPlayers)}
+          </div>
+          <div className="mb-1 text-lg">Recent Winner: {recentWinner}</div>
         </div>
       ) : (
         <div>Raffle Address not detected</div>
