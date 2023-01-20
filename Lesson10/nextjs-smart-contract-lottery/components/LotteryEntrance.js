@@ -8,7 +8,7 @@ export const LotteryEntance = () => {
   const { isWeb3Enabled, chainId: chainIdHex } = useMoralis();
   const chainId = parseInt(chainIdHex);
   const [entranceFee, setEntranceFee] = useState("0");
-  const [numberOfPlayers, setNumberOfPlayers] = useState("0");
+  const [numberOfPlayers, setNumberOfPlayers] = useState("");
   const [recentWinner, setRecentWinner] = useState("");
 
   //dispatch - used for dispatching state to context
@@ -81,7 +81,7 @@ export const LotteryEntance = () => {
     setNumberOfPlayers(playersFromCall);
 
     const recentWinnerFromCall = (await getRecentWinner()).toString();
-    setNumberOfPlayers(recentWinnerFromCall);
+    setRecentWinner(recentWinnerFromCall);
   }
 
   //useEffect hook to render
