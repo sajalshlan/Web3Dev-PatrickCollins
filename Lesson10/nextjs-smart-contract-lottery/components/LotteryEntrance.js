@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { errors, ethers } from "ethers";
 import { useMoralis, useWeb3Contract, isWeb3Enabled } from "react-moralis";
 import { useNotification } from "web3uikit";
+import pic from "../assets/you.jpg";
 
 export const LotteryEntance = () => {
   const { isWeb3Enabled, chainId: chainIdHex } = useMoralis();
@@ -66,7 +67,7 @@ export const LotteryEntance = () => {
       type: "info",
       message: "Transaction Completed",
       title: "Transaction Notification",
-      position: "topR",
+      position: "topL",
       icon: "bell",
     });
   };
@@ -106,7 +107,7 @@ export const LotteryEntance = () => {
             disabled={isFetching || isLoading}
           >
             {isFetching || isLoading ? (
-              <div className="animate-spin spinner-border h-8 w-8 border-b-2 rounded-full"></div>
+              <div className="animate-spin spinner-border h-6 w-6 border-b-2 rounded-full text-white"></div>
             ) : (
               <div>Enter Raffle</div>
             )}
@@ -120,7 +121,7 @@ export const LotteryEntance = () => {
           <div className="mb-1 text-lg">Recent Winner: {recentWinner}</div>
         </div>
       ) : (
-        <div>Raffle Address not detected</div>
+        <img src={pic} />
       )}
     </>
   );
