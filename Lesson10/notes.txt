@@ -157,3 +157,57 @@ and then make the handleSuccess and handleNotification function (see the code)
 
 Reading and Displaying Contract Data
 get the numberOfPlayers and recentWinner here, fine i'll do it myself
+
+now its not rendering itself, you gotta refresh to see the number of players increase, so to fix that - put updateUI() inside handlesuccess function so that it gets called and state gets re-rendered everytime there is a successful enterRaffle function executed.
+
+also the onSuccess method is not checking the block confirmation, its just checking if the transaction was sent to Metamask successfully and that's why we gotta do tx.wait(1) in handleSuccess function to wait for 1 block confirmation
+
+
+
+TAILWIND AND STYLING
+there are 2 styling things, first component libraries like web3uikit that gives us component and their block of codes and second is the CSS libraries that do the formatting and styling part
+go to TAILWIND docs and go the installing tailwind in nextjs, perform all those commands
+Its all about searching for cmds on tailwind docs and applying here, take the help of google and chatGPT, you'll get good in CSS too with practice and more projects!
+
+
+
+HOSTING YOUR SITE
+intro
+
+
+
+IPFS
+basically Decentralized Storage 
+it is kind of like blockchain but it isn't blockchain - it takes our data and hashes it
+we can hash our data on our IPFS node and then we can pin our data/file/code to our node
+other nodes can pin our hash and then they will get a copy of our data in their node
+
+its on the node operators on how much data and what data they pin on a node - therefore a node can be of megabytes as well as of terrabytes
+READ THIS - []
+
+
+
+HOSTING ON IPFS
+do it with fleek (helpful without doing manual setup + automatic deploying after committing changes on github + one more url given for those who don't have IPFS companion/connector in their browsers)
+
+
+
+FILECOIN
+Protocol Labs working on both IPFS and FILECOIN.
+Problem w/ IPFS is that other nodes need to pin our data to make it truely decentralized, but FILECOIN can solve this as its a decentralized blockchain for data Storage(how? idk lets see ahead)
+
+IPFS - InterPlanetary File System
+
+Computer    -----   file://path/to/index.html
+Web2        -----   http://domain.com//path/to/index.html   (IP + Port)
+IPFS        -----   ipfs://[CID]/path/to/index.html
+
+IPFS addresses content by what it is instead of where it is!
+It replaces a folder or file location by its CID (Content ID)
+
+                Content -----Cryptographic Hash Function-----> CID (Content Identifier)
+
+CID can be reproduced anytime from the same content
+
+**THE PROBLEM is that who is going to ensure persistence and permanence(remaining unchanged undefinitely) of your data/all the data 
+

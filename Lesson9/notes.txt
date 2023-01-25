@@ -42,7 +42,7 @@ The Graph listens to these events and stores them in the graph so that they're e
 When defining an event, you can have 2 types of parameters, indexed and non-indexed. We can have upto 3 indexed parameters, which are also called as topics; they are easily searchable and much easier to query than the non-indexed parameter
 
 Then we emit, similar to calling a fnc, and we are telling it to store the data into the logging data structure of EVM, by emitting an event.
-Now the non-indexed parameters gets stored as ABI encoded index parameters, meaning -> we took those non-indexed parameters, matched them together with their ABI, pumped them thru an encoding algorithm and at the end what we get is stored in the log data structure which we can also see on etherscan.
+Now the non-indexed parameters gets stored as ABI encoded index parameters, meaning -> we took those non-indexed parameters, mashed them together with their ABI, pumped them thru an encoding algorithm and at the end what we get is stored in the log data structure which we can also see on etherscan.
 If you have the ABI, they are easy to decode, if not they're hard to and these non-indexed parameters cost less gas to pump into the logs.
 
 
