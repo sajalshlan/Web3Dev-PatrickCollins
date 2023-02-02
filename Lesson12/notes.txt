@@ -24,3 +24,6 @@ MANUALLY CREATING AN ERC20 TOKEN
 
 Instead of manually creating a token everytime, we can use OpenZeppelin library to get a boiler plate code.
 OpenZeppelin is considered as the standard library for solidity
+
+and also this one good thing of ERC20 standard is this 'allowance' mapping that helps us set addresses that would be able to interact with our tokens
+    mapping(address => mapping(address => uint)) public allowance;
