@@ -1,0 +1,26 @@
+Its going to be super fun!
+
+EIP
+EIP - Ethereum Improvement Proposals
+ERC - Ethereum Request for Comments
+once an EIP gets verified and accepted - an ERC is created
+
+ERCs & EIPs are listed/made chronologically -> they share the same number
+
+ERC-20 is a token and a smart contract standard - both
+A standard interface for tokens.
+This standard allows for the implementation of a standard API for tokens within smart contracts. This standard provides basic functionality to transfer tokens, as well as allow tokens to be approved so they can be spent by another on-chain third party.
+
+Why make an ERC20?
+ - Governance token
+ - Secure an underlying network
+ - Create a synthetic asset
+
+to build a ERC20, we just have to write a smart contract that follows the token standard
+
+
+
+MANUALLY CREATING AN ERC20 TOKEN
+
+Instead of manually creating a token everytime, we can use OpenZeppelin library to get a boiler plate code.
+OpenZeppelin is considered as the standard library for solidity
