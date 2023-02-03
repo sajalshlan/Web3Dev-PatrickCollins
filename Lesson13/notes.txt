@@ -1,1 +1,91 @@
-It's going to be super fun DeFi yoooo!
+It's going to be super fun yooooo
+all links here - [https://chain.link/education/defi]
+
+DEFI
+A key property differentiating decentralized finance from traditional financial infrastructure is the design principle of permissionless composability.
+
+Permissionless composability in DeFi means developers can access key Web3 infrastructure without permission.
+
+    - DeFi composability allows developers to focus on their core business logic by leveraging permissionless and censorship-resistant infrastructure
+    - A multitude of DeFi applications (“Money LEGOs”) can be connected in tandem to create previously unimaginable use cases and financial products
+    - The traditional financial system has limitation on practical composability due to its permissioned nature, high barrier to entry, costs, and more
+    - Composability of DeFi applications requires due diligence on each protocol utilized to reduce systemic risk for the DeFi ecosystem as a whole
+
+A key property accelerating the innovation and adoption of DeFi is the permissionless composability available to developers. Composability is a design principle that allows various different components within a system to be combined together to meet any specific use case requirements. DeFi is unique in that developers can leverage any combination of DeFi protocols together without requiring any special permissions, opening up a frictionless innovation cycle unlike anything we have seen in traditional finance
+
+Plugging into DeFi infrastructure requires no approval from the original developers, leading to seamless innovation without any central chokepoint.
+
+Listing a token on a DEX is a quite simple example of composability, but this structure can be extended by connecting new DeFi applications to existing applications like ‘Money LEGOs’.
+
+    Some different money LEGOs in DeFi include:
+        Order Book Exchanges (Loopring, dYdX)
+        Automated Market Makers (Bancor, Sushi)
+        DeFi Aggregators (1inch, Alpaca)
+        Stablecoins (Liquity, Fei)
+        Money Markets (Aave, Compound)
+        Synthetic Assets (Synthetix, Alchemix)
+
+    These are just some of the many building blocks that can be connected in various combinations to create a structure that is greater than the sum of its parts
+
+One of the biggest value propositions of DeFi is the interoperability by default; a financial system accessible for the wider ecosystem.
+
+
+
+Overview of DeFi Applications
+
+1. Stablecoins
+    Stablecoins are a core component of DeFi that allow fiat currencies like the U.S. dollar and other assets to be represented on the blockchain as digital tokens. A stablecoin is a representation of an underlying asset and tries to maintain a 1:1 peg with it through various mechanisms. The desire for relative stability in the often volatile cryptocurrency markets has propelled the aggregate value of all stablecoins to be over $100B.
+    ‍
+    There are various stablecoin designs that aim to provide different guarantees for maintaining their peg, including fiat-backed stablecoins, decentralized stablecoins, and algorithmic stablecoins. 
+    
+    - Fiat-backed stablecoins represent fiat currency on the blockchain and are backed by off-chain collateral. For example, TrueUSD (TUSD) is a U.S. Dollar stablecoin backed by USD in an off-chain bank account, which uses Chainlink Proof of Reserve to present continuous on-chain audits attesting to its 1-to-1 collateralization. 
+
+    - Decentralized stablecoins, on the other hand, are often issued as overcollateralized loans using crypto collateral for increased resilience and transparency. The peg is maintained through changing interest rates, which encourage more or less borrowing. 
+
+    - Algorithmic stablecoins aim to maintain their peg through various cryptoeconomic mechanisms. An example is Fei Protocol, which effectively functions as an algorithmic central bank where the peg is upheld by the protocol on the open market through a process called reweighting. Users can mint the stablecoin FEI with an equivalent deposit value of ETH, which gets added to the protocol’s reserves to be used as Protocol Controlled Value (PCV). PCV represents all assets that aren’t redeemable by users. If FEI is trading below the peg, PCV is used to buy FEI on the open market to push the price up, and if FEI is trading above the peg, more FEI is minted and sold on the open market to push the price down.
+
+
+2. Decentralized Exchanges (DEXs)
+
+    Money markets are one of the fundamental components of a well-working economy. They are venues where borrowers and lenders are connected. The ability to borrow funds or earn a yield on idle capital generates a significant amount of economic activity. Money markets have traditionally been facilitated by centralized entities, which grants them significant power over this key segment of the global economy and the funds flowing through it. 
+    ‍
+    Decentralized money markets enable users to borrow and lend digital tokens using blockchain-based smart contracts in a permissionless way without custodians. These decentralized money marketplaces are governed by open-source code that is managed by a community of distributed stakeholders, democratizing the supply and demand side.
+    ‍
+    Applications like Aave, Compound, and CREAM have seen tens of billions of dollars of value flow through their protocols thanks to their non-custodial nature that reduces single points of failure. Decentralized money markets rely on overcollateralization, where users are required to deposit more collateral than what they intend to borrow. They then use on-chain price feeds supplied by oracles to determine users’ current collateralization ratio—the ratio of users’ collateral value to their outstanding loan value—which is then used to issue fair market loans, liquidate undercollateralized positions, and calculate interest payments.
+
+
+3. Synthetic Assets
+
+    Synthetic assets are financial instruments that derive their value from an underlying asset or benchmark (e.g. synthetic gold tracks the price of gold). Historically, the creation of these kinds of financial instruments has been the privilege of large institutions since a large degree of trust is required with the involved capital at risk. However, with the permissionless framework of DeFi, anyone can build an open-source financial primitive that is available to the public and provides strong guarantees for its intended execution.
+    ‍
+    A fundamental aspect of the security of blockchain-based synthetic assets is access to high-quality, tamper-proof pricing data. Since the management of synthetic assets and the settlement of swaps is determined by external data sources for the underlying assets, oracles are foundational infrastructure for providing reliable on-chain valuations when it comes to these blockchain-based assets.
+
+
+4. Yield Farming
+    Yield farming (or liquidity mining) is a new primitive enabled by DeFi that can be effective in incentivizing liquidity for a project, launching a fair distribution of a new token, and growing an active and long-lasting community. Yield farming incentives reward users who provide liquidity or otherwise contribute to the health of a decentralized protocol. The two main goals of yield farming are often to incentivize users to bootstrap usage of the project or to distribute newly launched tokens with governance rights over the protocol to a decentralized set of participants. 
+    ‍
+    Yield farming has proven to be an effective way of kickstarting a DeFi ecosystem by cultivating a network effect, bootstrapping supply-side liquidity for a project, and creating a community of stakeholders primarily made up of users of the protocol. Yield farming incentives come in many forms based on individual project goals, but they often involve leveraging existing infrastructure to establish unique reward schemes that are the most effective at achieving their intended purpose. DApp developers have a great amount of creative freedom over what distinct protocol parameters they would like to leverage in their liquidity mining schemes to infuse their ecosystem with a strongly aligned community of active stakeholders.
+‍
+
+
+Mitigating the Risk Factors of DeFi With Chainlink
+
+Composability allows for faster iteration cycles and interoperable applications by default but also can introduce systemic risk in the DeFi ecosystem if faulty oracles are used. For example, a low-quality external data source from an insecure oracle can have far-reaching consequences when a multitude of DeFi applications are connected to create an exotic financial product. A chain of connected “money LEGOs” is only as strong as its weakest link, and increasing an application’s composability can create edge cases that need to be mitigated against. As a result, high-quality data sources that avoid manipulation are vital to protecting users and mitigating systemic risk within DeFi. 
+‍
+DeFi use cases that already heavily rely on high-quality external data sources through oracles include:
+
+        - Algorithmic stablecoins like FEI, which need a reference price to maintain the peg.
+        - Money markets like Aave and Compound, which need oracles to calculate the value of collateral, interest rates, and liquidations.
+        - Synthetic asset protocols like Synthetix and dYdX, which need accurate market data to mint, burn, swap, and liquidate synthetic assets.
+        - Asset management platforms like Set Protocol, which need price data to periodically purchase and sell assets to maintain a certain allocation in a basket of assets—a process called rebalancing.
+
+To provide these protocols with a secure source of external data, Chainlink oracle networks serve as secure decentralized middleware for connecting on-chain and off-chain environments. Chainlink allows DeFi developers to give their users the highest data quality, security, and reliability guarantees regarding their smart contract’s correct and timely execution. Ultimately, Chainlink has helped reduce systemic risks in the DeFi ecosystem and has enabled users to trust smart contracts with tens of billions of dollars of value across a multitude of live DeFi applications.
+
+
+
+The Blockchain Oracle Problem
+
+The oracle problem revolves around a very simple limitation—blockchains cannot pull in data from or push data out to any external system as built-in functionality. As such, blockchains are isolated networks, akin to a computer with no Internet connection.
+Bridging the connection between the blockchain (on-chain) and the outside world (off-chain) requires an additional and separate piece of infrastructure known as an oracle
+
+MUST READ - [https://blog.chain.link/what-is-the-blockchain-oracle-problem/]
