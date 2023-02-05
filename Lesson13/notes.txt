@@ -89,3 +89,11 @@ The oracle problem revolves around a very simple limitation—blockchains cannot
 Bridging the connection between the blockchain (on-chain) and the outside world (off-chain) requires an additional and separate piece of infrastructure known as an oracle
 
 MUST READ - [https://blog.chain.link/what-is-the-blockchain-oracle-problem/]
+
+
+
+STABLECOINS
+Read - [https://stablecoins.wtf/]
+
+
+TERRA AND LUNA STORY - [https://www.investopedia.com/terra-5209502#:~:text=Terra%20stablecoins%20track%20the%20price,for%20it%20are%20always%20balanced.]
