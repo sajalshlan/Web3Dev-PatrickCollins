@@ -97,3 +97,28 @@ Read - [https://stablecoins.wtf/]
 
 
 TERRA AND LUNA STORY - [https://www.investopedia.com/terra-5209502#:~:text=Terra%20stablecoins%20track%20the%20price,for%20it%20are%20always%20balanced.]
+
+
+
+DEXs
+- [https://chain.link/education-hub/what-is-decentralized-exchange-dex]
+
+AMM - [https://medium.com/balancer-protocol/what-is-an-automated-market-maker-amm-588954fc5ff7]
+    - [https://chain.link/education-hub/what-is-an-automated-market-maker-amm]
+
+
+What Are Liquidity Pools and Liquidity Providers?
+
+    Underpinning AMMs are liquidity pools, a crowdsourced collection of crypto assets that the AMM uses to trade with people buying or selling one of these assets. The users that deposit their assets to the pools are known as liquidity providers (LPs). 
+
+    Liquidity is essential for AMMs to function properly. If an AMM doesn’t have a sufficient liquidity pool, it can create a large price impact when traders buy and sell assets on the DeFi AMM, leading to capital inefficiency and impermanent loss. To incentivize liquidity providers to deposit their crypto assets to the protocol, AMMs reward them with a fraction of the fees generated on the AMM, usually distributed as LP tokens. The practice of depositing assets to earn rewards is known as yield farming. 
+
+    The prices of assets on an AMM automatically change depending on the demand. For example, a liquidity pool could hold ten million dollars of ETH and ten million dollars of USDC. A trader could then swap 500k dollars worth of their own USDC for ETH, which would raise the price of ETH on the AMM.
+
+
+
+What Are the Different Automated Market Maker (AMM) Models?  
+
+    Constant function market makers (CFMMs), such as constant product market makers, constant sum market makers, and constant mean market makers, are a class of first-generation AMMs made popular by protocols like Bancor, Curve, and Uniswap. These AMM exchanges are based on a constant function, where the combined asset reserves of trading pairs must remain unchanged. In non-custodial AMMs, user deposits for trading pairs are pooled within a smart contract that any trader can use for token swap liquidity. Users trade against the smart contract (pooled assets) as opposed to directly with a counterparty as in order book exchanges.
+
+    more from - [https://chain.link/education-hub/what-is-an-automated-market-maker-amm]
