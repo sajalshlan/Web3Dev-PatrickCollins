@@ -122,3 +122,13 @@ What Are the Different Automated Market Maker (AMM) Models?
     Constant function market makers (CFMMs), such as constant product market makers, constant sum market makers, and constant mean market makers, are a class of first-generation AMMs made popular by protocols like Bancor, Curve, and Uniswap. These AMM exchanges are based on a constant function, where the combined asset reserves of trading pairs must remain unchanged. In non-custodial AMMs, user deposits for trading pairs are pooled within a smart contract that any trader can use for token swap liquidity. Users trade against the smart contract (pooled assets) as opposed to directly with a counterparty as in order book exchanges.
 
     more from - [https://chain.link/education-hub/what-is-an-automated-market-maker-amm]
+
+
+
+UNISWAP
+
+Brief history - [https://uniswap.org/blog/uniswap-history]
+Whitepaper 
+            v1 - [https://hackmd.io/C-DvwDSfSxuh-Gd4WKE_ig#%F0%9F%A6%84-Uniswap-Whitepaper]    
+            v2 - [https://uniswap.org/whitepaper.pdf]
+            v3 - [https://uniswap.org/whitepaper-v3.pdf]
