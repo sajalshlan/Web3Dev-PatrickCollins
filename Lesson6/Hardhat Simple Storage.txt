@@ -69,7 +69,6 @@ Now we need a etherscan API key - get it from etherscan, add that to your env fi
         await simpleStorage.deployTransaction.wait(6)
         await verify(simpleStorage.address, [])
         }
-    }
 
     async function verify(contractAddress, args) {
         console.log("verifying contract ...")
@@ -86,6 +85,8 @@ Now we need a etherscan API key - get it from etherscan, add that to your env fi
             }
         }
     }
+
+
 
 INTERACTING WITH CONTRACTS IN HARDHAT
 same as before
@@ -131,7 +132,7 @@ yarn hardhat node -> runs a local blockchain node that you can interact with - g
             //accounts: thanks hardhat!,
             chainId: 31337,
         },
-
+    }
 
 
 HARDHAT CONSOLE
@@ -207,7 +208,7 @@ a hardhat plugin / tool that goes to our tests and checks how many lines of our 
 
     So, first the 2 evergreen steps to do:
     1. yarn add --dev solidity-coverage
-    2. require("solidity-coverage)         in the hardhat config file
+    2. require("solidity-coverage")         //in the hardhat config file
 
     3. yarn hardhat coverage
 
@@ -216,4 +217,5 @@ it will make a coverage folder and a coverage.json file -> add it to .gitignore
 
 
 HARDHAT WAFFLE
- Waffle is a smart contract testing frameworkIn summary, if you're starting a new project and you want to use modules in the browser, and you don't want to spend a lot of time configuring your tooling, then Browserify might be a good choice. On the other hand, if you're working on a more complex project and you want more control over how your code is processed and bundled, then Webpack might be a better fit.
+ Waffle is a smart contract testing framework.
+ In summary, if you're starting a new project and you want to use modules in the browser, and you don't want to spend a lot of time configuring your tooling, then Browserify might be a good choice. On the other hand, if you're working on a more complex project and you want more control over how your code is processed and bundled, then Webpack might be a better fit.
