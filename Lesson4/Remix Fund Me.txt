@@ -36,7 +36,7 @@ Exchanges > Data Providers > Chainlink Nodes > Reference Contract > User Contrac
 whenever we request data from these oracle nodes - a oracle node delivers data, we have to pay a oracle fee (just like the transaction fee) in chainlink token
 all these nodes deliver data to a single node, which further delivers the data with signatures of the nodes to a "reference" smart contract that is present on chain, via which other smart contracts on the blockchain takes in the data feed.
 
-*Chainlink VRF(Verifyable randomness function):
+*Chainlink VRF(Verifyable randomness function): 
 Securing randomness
 blockchain are deterministic systems, that is they can't have randomness.
 chainlink vrf can help us get a provably random number - to guarantee randomness and fairness in our applications
@@ -117,8 +117,7 @@ contract FundMe {
          uint ethAmountInUsd = (ethAmount * ethPrice)/1e18;
          return ethAmountInUsd;
      }
-
-
+}
 
 BASIC SOLIDITY ARRAYS AND STRUCTS II
 understandable with code:
@@ -138,7 +137,7 @@ understandable with code:
          addressToAmountFunded[msg.sender] = msg.value;
 
      }
-
+    }
 
 
 LIBRARIES
