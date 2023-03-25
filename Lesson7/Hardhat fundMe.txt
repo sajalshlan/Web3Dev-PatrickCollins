@@ -35,11 +35,11 @@ but now, it will look like (given in the hardhat-deploy script)
         const chainId = network.config.chainId
     }
 
-    //we use namedAccounts, a method  given by the ethers library to easily game name to those different private key spots, mentioned in the network section of config file
+    //we use namedAccounts, a method  given by the ethers library to easily give name to those different private key spots, mentioned in the network section of config file
 
     so, in config file
     namedAccounts: {
-        deployer: {
+        deployer: { 
             default: 0,
             //different network mai different position:
             31337: 1,
@@ -100,6 +100,37 @@ In short, mocking is creating objects that simulate the behaviour of real object
 
 //getNamedAccounts shit
 basically i am ded
+i get it now(after few months hehe)
+
+        //  module.exports = {
+        namedAccounts: {
+            deployer: {
+                default: 0, // The first account in the array will be used by default
+                1: 0, // The same address will be used on both networks
+                4: 0, // ...and so on
+            },
+            alice: {
+                default: 1,
+                1: 1,
+                4: 1,
+            },
+            bob: {
+                default: 2,
+                1: 2,
+                4: 2,
+            },
+        },
+        // Other configuration options...
+        };
+
+
+The numbers 1 and 4 in the configuration represent the network IDs of the Ethereum networks you are configuring the named accounts for. In this case, 1 refers to the Ethereum mainnet, and 4 refers to the Rinkeby test network.
+
+The values 1 and 2 after the network IDs represent the indices of the Ethereum addresses in the hardhat or geth accounts array that you want to assign to the named accounts. For example, 1: 1 means that you want to assign the second Ethereum address in the hardhat or geth accounts array (since arrays in JavaScript and Solidity are 0-indexed) to the named account on the Ethereum mainnet. Similarly, 4: 1 means that you want to assign the second Ethereum address in the hardhat or geth accounts array to the named account on the Rinkeby test network.
+
+So, in the example I provided earlier, the alice named account has been assigned the second Ethereum address (index 1) in the hardhat or geth accounts array for both the Ethereum mainnet and the Rinkeby test network. This means that whenever you reference alice in your Solidity code or tests and specify the network ID, the geth account with index 1 will be used as the Ethereum address for that named account.
+
+hardhat account array means the 10 sample Ethereum accounts we get when we run localhost/our hardhat node.
 
 
 
@@ -156,7 +187,7 @@ staging test - done on a testnet
     Chai asserts that the values in your tests are correct. (expect, assert)
     Waffle provides tools for compiling and deploying contracts, functions for testing contracts, contract mocks, extra Chai assertions etc. It can be used in addition to Mocha (as well as other test runners like Jest), Waffle does not run tests itself.
 
-Keep checking solidity coverage in btw - yarn hardhat coverage - to see how much lines we covered and how much left.
+**Pro-tip: Keep checking solidity coverage in btw - yarn hardhat coverage - to see how much lines we covered and how much left.
 
 
 
@@ -185,6 +216,8 @@ ethers.getContract("FundMe", ) -> gives us the most recently deployed version of
 
 didn't understand this line:
     await expect(fundMe.funders(0)).to.be.reverted
+
+    got it now ->  to test whether the smart contract function funders(0) throws a revert error, which would indicate that the function did not execute successfully. If the function throws an error, the test will pass. If the function executes successfully without error, the test will fail.
 
 //one thing to note here, we are connected accounts to the fundMe contract and not just addresses.
 
