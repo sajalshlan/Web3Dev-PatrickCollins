@@ -212,7 +212,7 @@ a modifier is a keyword that we can add right in any function declaration, ex-
 
 underscore represents doing the rest of the code.
 
-
+-------------------------------------------------------------------------------------------------
 
 ADVANCED SOLIDITY CONCEPTS
 
@@ -270,13 +270,13 @@ A contract can have at most one receive function, declared using receive() exter
     // Explainer from: https://solidity-by-example.org/fallback/
     // Ether is sent to contract
     //      is msg.data empty? (whether sending by calldata or by metamask directly)
-    //          /   \ 
-    //         yes  no
-    //         /     \
-    //    receive()?  fallback() 
+    //          /       \ 
+    //         yes       no
+    //         /           \
+    // receive() exists?  fallback() 
     //     /   \ 
     //   yes   no
     //  /        \
     //receive()  fallback()
 
-    DONE YEAHHH
+    DONE YEAHHH!!

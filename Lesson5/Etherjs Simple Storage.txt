@@ -32,7 +32,7 @@ gitpod - a cloud development environment - run your code on a remote server, sim
 
 COMPILING OUR SOLIDITY CODE
 we need to install a solidity compiler - npm install solc
-or yarn add solc
+                                      or yarn add solc
 
 then add a script: {
     "compile": "yarn solcjs --bin --abi --include-path node_modules/ --base-path . -o . SimpleStorage.sol"

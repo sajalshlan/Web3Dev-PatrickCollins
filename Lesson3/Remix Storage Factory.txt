@@ -15,6 +15,7 @@ Basic import other contracts with the "import" keyword - now you can make a obje
             function createSimpleStorageContract() public {
                 simpleStorage = new SimpleStorage();
             }
+        }
 
 
 
@@ -54,7 +55,7 @@ INHERITANCE AND OVERRIDES
 1. import "./SimpleStorage.sol"
 2. contract MyChildContract is SimpleStorage {
 
-}
+        }
 
 *Overrides -> name says - to override any function of the parent contract, 2 words - virtual and override
 1. virtual -> need to add this keyword to the original function in the parent contract which the child would be able to override.

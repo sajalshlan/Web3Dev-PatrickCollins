@@ -1,4 +1,4 @@
-const { ethers } = require("hardhat")
+ const { ethers } = require("hardhat")
 const { expect, assert } = require("chai")
 
 describe("SimpleStorage", function () {

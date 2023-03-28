@@ -21,3 +21,30 @@ we can have upto 3 indexed parameters - they are easily searchable and much easi
 Indexed Parameter == Topic
 
 we need to emit an event in order to store it into the logging data structure
+
+
+
+**
+State mutability
+State mutability refers to whether a function modifies the state of the contract or not. There are four different state mutability types:
+
+pure: The function does not read or modify the contract state or any external state. It only uses its input arguments to compute a return value.
+view: The function does not modify the contract state but may read the contract state or other external state.
+payable: The function can receive Ether and modify the contract state.
+nonpayable: The function does not receive Ether and may modify the contract state.
+Encoding and decoding refer to the way in which function arguments and return values are represented in binary form so that they can be passed between contracts and external applications. In Ethereum, function arguments and return values are typically encoded using the ABI encoding format, which is a binary format that specifies how data should be serialized and deserialized.
+
+When a function is called from another contract or external application, its input arguments are encoded into binary form before being sent to the contract. Similarly, when a function returns a value, that value is encoded into binary form and sent back to the calling contract or application. The process of converting binary data back into its original form is called decoding.
+
+So, in summary:
+
+State mutability refers to whether a function modifies the contract state or not.
+Encoding and decoding refer to the process of converting function arguments and return values between binary form and their original form.
+
+
+
+**
+ABI vs Interfaces
+An ABI is a low-level binary format that defines the way in which smart contracts interact with each other. It includes information about the contract's functions, events, and data types, as well as the way in which function parameters and return values are encoded and decoded. ABIs are typically used by developers who are interacting with a contract programmatically, such as when building a DApp or integrating a contract into a larger application.
+
+On the other hand, an interface is a higher-level, human-readable definition of a contract's methods and events. It specifies the names, argument types, and return types of the contract's functions and events, but does not include information about the encoding or decoding of function parameters and return values. Interfaces are typically used by developers who are building smart contracts that interact with other contracts, as well as by developers who are building user interfaces for their contracts.

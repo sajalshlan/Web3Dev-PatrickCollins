@@ -15,7 +15,7 @@ The Oracle Problem:
 Blockchain needs real world data inorder to work full-fledgedly but it itself can't interact with the real world 
 
 *Blockchain Oracle - any device that interacts with the off-chain world(real world) and provides external data and external computations to the smart contracts(blockchain).
-but we can't rely on a single oracle to provide this - can't stay truly decentralized when we only have one oracle, can we?
+but we can't rely on a single oracle to provide this - can't stay truly decentralized when we only have one oracle, can we? 
 
 therefore we should have decentralized oracles bringing external data and external computations to the smart contracts - making sure we are decentralized end to end
 hence mixing both decentralized blockchain with decentralized oracle network gives rise to the concept of Hybrid smart contracts.
@@ -48,8 +48,7 @@ A Block explorer - a way to view different address, transactions and other happe
 
 
 Introduction to Gas
-When we make transactions, the miners or validators make a small fee
-the fee depends on how much of gas you use
+When we make transactions, the miners or validators make a small fee, the fee depends on how much of gas you use
 
 Gas: a unit of computational measurement
 the more complex your transaction is, the more gas you have to pay.
@@ -150,6 +149,17 @@ In POS - validators
 2 types of Attacks in POW:
 1. Sybil Attack- when a single person or a single node tries to affect the decentrality of the network by pretending to be multiple different people - which is very difficult in POW and POS
 2. 51% attack - basically if 51% of the nodes team up and influence the chain in their direction - can't because of the longest chain selection mechanism 
+
+
+**
+Sybil resistance is a property of blockchain systems that helps prevent malicious actors from taking control of the network by creating a large number of fake identities, also known as Sybil attacks.
+
+In a Sybil attack, an attacker creates multiple fake identities, or "sybils," and uses them to control a significant portion of the network's resources or gain an unfair advantage. For example, the attacker may use their Sybil identities to launch a 51% attack, in which they control the majority of the network's computing power and can manipulate transaction records.
+
+To prevent Sybil attacks, blockchain systems typically use a consensus mechanism that requires nodes to prove their identity and computing power in some way. For example, Proof of Work (PoW) requires nodes to solve complex mathematical problems to prove that they have invested computational resources in the network, while Proof of Stake (PoS) requires nodes to lock up a certain amount of cryptocurrency to participate in consensus.
+
+By making it difficult or costly for an attacker to create a large number of fake identities, Sybil resistance helps ensure the integrity and security of the blockchain network.
+
 
 *POW and POS are Sybil Resistance mechanisms.
 

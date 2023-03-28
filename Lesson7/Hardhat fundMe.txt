@@ -217,7 +217,7 @@ ethers.getContract("FundMe", ) -> gives us the most recently deployed version of
 didn't understand this line:
     await expect(fundMe.funders(0)).to.be.reverted
 
-    got it now ->  to test whether the smart contract function funders(0) throws a revert error, which would indicate that the function did not execute successfully. If the function throws an error, the test will pass. If the function executes successfully without error, the test will fail.
+    got it now(after a few iterations hehe) ->  to test whether the smart contract function funders(0) throws a revert error, which would indicate that the function did not execute successfully. If the function throws an error, the test will pass. If the function executes successfully without error, the test will fail.
 
 //one thing to note here, we are connected accounts to the fundMe contract and not just addresses.
 
